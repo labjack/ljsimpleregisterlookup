@@ -1,5 +1,30 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
+    .shortdes {
+    line-height: 1.7;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+}
+ @media print {
+    .lj-scribe-tag {
+        -webkit-print-color-adjust: exact;
+    }
+    
+    }
 
+        /*
+        use for fade effect insted of elipse on tag preview.
+        background: -webkit-linear-gradient(left, #000000 , #777676);
+        background: -o-linear-gradient(right, #000000, #777676);
+        background: -moz-linear-gradient(right, #000000, #777676);
+        background: linear-gradient(to right, #000000 , #777676); 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        */
+    /*}
+ /*
     h4 {
         margin-top: 1em;
         margin-bottom: 0.2em;
@@ -97,7 +122,7 @@
     }
 
     .description .title {
-        /*font-size: 13px;*/
+    
         margin-bottom: 0;
         border-bottom: 0;
         color: black;
@@ -134,7 +159,8 @@
         background-color: #9DDAFB;
     }
     
-    .shortdes { 
+    .shortdes {
+    white-space: nowrap; 
     width: 75%; 
     overflow: hidden;
     text-overflow: ellipsis; 
@@ -147,6 +173,82 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         */
+    /*}
+    */
+</style>      
+<style>
+/*
+.divTable
+{
+display: block;
+width: 100%;
+background-color:#9DDAFB;
+}
+
+.divCaption
+{
+width:100%;
+background-color:#C9ECFF;
+position:relative;
+color:#494949;
+padding: 5px;
+text-align:left;
+font-family:open sans,Helvetica Neue,Helvetica,Arial,Sans-serif;
+border:0px;
+}
+
+.divHeaderRow
+{
+background-color:#9DDAFB;
+clear: both;
+}
+
+.divHeaderCell
+{
+    border: 1px solid #999999;
+    float: left;
+    height: 17px;
+    overflow: hidden;
+}
+
+
+.divRow
+{
+background-color:#9DDAFB;
+clear: both;
+}
+
+.divCell
+{
+    border: 1px solid #999999;
+    float: left;
+    height: 17px;
+    overflow: hidden;
+}
+
+
+
+.expand:hover{ 
+        background-color: #C9ECFF;
+        cursor: default;
     }
-    
-</style>        
+.divFooterRow
+{
+position:relative;
+width:100%;
+}
+
+.divFooterCell
+{
+background-color:#FF6600;
+color:#ffffff;
+width:100%;
+padding:0px;margin:0px;
+vertical-align:;
+text-align:center;
+position:relative;
+line-height:20px;
+font-weight:bold;
+}
+/*
+</style>  

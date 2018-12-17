@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
 try {
     var jQueryObj;
@@ -12,9 +15,9 @@ try {
             $('.collapsed-content-expander').closest('.content').find('.sometimes-shown').hide();
             
             $('.collapsed-content-expander').click(function(e) {
-                $(e.target).closest('.content').find('.collapsed-content-expander').fadeOut(function () {
-                    $(e.target).closest('.content').find('.sometimes-shown').fadeIn();
-                });
+                $(e.target).closest('.content').find('.collapsed-content-expander').hide();
+                    $(e.target).closest('.content').find('.sometimes-shown').show();
+                
                 return false;
             });
         });
@@ -23,4 +26,53 @@ try {
     
 }
 
+</script>
+<script>
+   $(document).ready(function(){
+       $('.register-details').hide();
+       $('#expand-all').on({'click': function(){
+        if ( $('.register-details').css('display') == 'none' ){
+            $('.register-details').show();
+            $('.short-description').hide();
+            $('#expand-all').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"); 
+            $('.expand-img').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+        }else{
+            $('.register-details').hide();
+            $('.short-description').show();
+            $('#expand-all').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+            $('.expand-img').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+            $('.sometimes-shown').hide();
+            $('.collapsed-content-expander').show();
+        }
+        sleep(1000);
+    }
+    });
+  $('table').find('tr').click( function(){
+  var row = $(this).find('th:first').attr('id');
+  if ( $('#'+row+'details').css('display') == 'none' ){
+           $('#'+row+'details').show();
+           $('#'+row+'SPN').hide();
+           $('#'+row+'IMG').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+        }else{
+            $('#'+row+'details').hide();
+            $('#'+row+'SPN').show();
+            $('#'+row+'IMG').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+        }
+        sleep(1000);
+        });   
+   });
+   window.onbeforeprint = function() {
+$('.register-details').show();
+            $('.short-description').hide();
+            $('#expand-all').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"); 
+            $('.expand-img').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+   }
+   window.onafterprint = function() {
+    $('.register-details').hide();
+    $('.short-description').show();
+    $('#expand-all').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+    $('.expand-img').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+    $('.sometimes-shown').hide();
+    $('.collapsed-content-expander').show();
+};
 </script>

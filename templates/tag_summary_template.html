@@ -127,109 +127,72 @@
    {% if tags[0][0].title != "" %}
    <h5 class="tag-title">{{ tags[0][0].title }}</h5>
    {% endif %}
-   <table class="tag-summary">
-      <thead>
-         <tr class="emphasis-row">
-            <td>Name</td>
-            <td>Start Address</td>
-            <td>Type</td>
-            <td>Access</td>
-         </tr>
-      </thead>
-      <tbody>
-         {% for (orig_subtag, subtag) in tags %}
-         <tr class="class-summary">
-            <td>{{ get_full_name(orig_subtag) }}</td>
-            <td>{{subtag.resolved[0].address}}</td>
-            <td>{{subtag.unresolved.type}}</td>
-            <td>
-               {% if subtag.resolved[0].read %}
-               {% if subtag.resolved[0].write %}
-               R/W
-               {% else %}
-               R
-               {% endif %}
-               {% elif subtag.resolved[0].write %}
-               W
-               {% endif %}
-            </td>
-         </tr>
-         {% endfor %}
-      </tbody>
-   </table>
-   <div class="tag-details" id="">
+   <div class="table-responsive">
+   <table class="table table-hover" >
+      <tr class="table-info">
+         <th scope="col">Name</th>
+         <th scope="col">Start Address</th>
+         <th scope="col">Type</th>
+         <th scope="col">Access</th>
+      </tr>
+ 
       {% for (orig_subtag, subtag) in tags %}
-      {{ registerBody(orig_subtag, subtag) }}
+      <tr class="table-primary">
+         <th>{{ get_full_name(orig_subtag) }}</th>
+         <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>
+         <td class="tg-s268">{{subtag.unresolved.type}}</td>
+         <td class="tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
+      </tr>
       {% endfor %}
-   </div>
+       {% for (orig_subtag, subtag) in tags %}
+      <tr  class="table-secondary">
+         <td scope="row" >
+         </td>
+         <td colspan="5" style="">{{ registerBody(orig_subtag, subtag) }}
+         </td>
+      </tr>
+
+      {% endfor %}
+   </table>
+</div>
 </div>
 {% else %}
 <div class="lj-scribe-tag" id="{{ orig_str.replace('@', '') }}">
-   {% if tags[0][0].title != "" %}
-   <h5 class="tag-title">{{ tags[0][0].title }}</h5>
-   {% endif %}
-   <table class="tag-summary">
-      <thead>
-         <tr class="emphasis-row">
-            <td width="80%">Name</td>
-            <td>Start Address</td>
-            <td>Type</td>
-            <td>Access</td>
-         </tr>
-      </thead>
-      <tbody>
-         {% for (orig_subtag, subtag) in tags %}
-         <tr class="class-summary expand" onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-            <td >
-               <p class="shortdes" >
-                  <a onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
-                  {{ get_full_name(orig_subtag) }} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
-                  <span id="{{subtag.resolved[0].address}}SPN"> {{ subtag.resolved[0].description  }}</span>
-               </p>
-            </td>
-            <td>{{subtag.resolved[0].address}}</td>
-            <td>{{subtag.unresolved.type}}</td>
-            <td>
-               {% if subtag.resolved[0].read %}
-               {% if subtag.resolved[0].write %}
-               R/W
-               {% else %}
-               R
-               {% endif %}
-               {% elif subtag.resolved[0].write %}
-               W
-               {% endif %}
-            </td>
-         </tr>
-         <tr class="expandbody">
-            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand">
-               <div>
-                  {{ registerBody(orig_subtag, subtag) }}
-                  </br>
-               </div>
-            </td>
-         </tr>
-         {% endfor %}
-      </tbody>
+{% if tags[0][0].title != "" %}
+<div id="divCaption" class="divCaption">{{ tags[0][0].title }}</div>
+{% endif %}
+
+<div class="table-responsive">
+   <table class="table table-hover" >
+      <tr class="table-info">
+         <th scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
+         <th scope="col" style="width: 5%;">Name</th>
+         <th scope="col" style="width: 75%;">Description</th>
+         <th scope="col" style="width: 6%;">Start Address</th>
+         <th scope="col" style="width: 6%;">Type</th>
+         <th scope="col" style="width: 6%;">Access</th>
+      </tr>
+ 
+      {% for (orig_subtag, subtag) in tags %}
+      <tr class="table-primary">
+         <th scope="row" id="{{subtag.resolved[0].address}}">
+            <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
+         </th>
+         <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
+         <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')}}</span><br></td>
+         <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>
+         <td class="tg-s268">{{subtag.unresolved.type}}</td>
+         <td class="tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
+      </tr>
+      <tr  class="table-secondary register-details" id="{{subtag.resolved[0].address}}details">
+         <td scope="row" >
+         </td>
+         <td colspan="5" style="">{{ registerBody(orig_subtag, subtag) }}
+         </td>
+      </tr>
+
+      {% endfor %}
    </table>
 </div>
-<script>
-   function hideDetails(id, imgid) {
-   var x = document.getElementById(id);
-   var buttonimg = document.getElementById(imgid);
-   var span = id + "SPN";
-   span = document.getElementById(span);
-   if (x.style.display === "none") {
-       x.style.display = "block";
-       span.style.display = "none";
-       buttonimg.src = "http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"
-   } else {
-       x.style.display = "none";
-       span.style.display = "inline";
-       buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
-   
-   }
-   }
-</script>
+
 {% endif %}
