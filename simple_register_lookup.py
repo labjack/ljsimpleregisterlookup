@@ -16,6 +16,7 @@ import lj_scribe
 import lj_device_scribe
 import parse_ljsl
 import serialize
+import lj_modbus
 
 app = flask.Flask(__name__)
 
@@ -35,36 +36,17 @@ ALLOWED_REDISPLAY_DOMAIN = "https://labjack.com"
 
 @app.route("/")
 def show_ui():
+    return render_modbus_map()
     """Display the JavaScript client for viewing MODBUS map information.
 
     @return: HTML register lookup table and controls.
     @rtype: str
     """
-
-    device_options = modbus_maps.keys()
-    device_options.insert(0, ALL_DEVICES_NAME)
-
-    tag_options = set()
-    for x in modbus_maps:
-        for reg in modbus_maps[x]:
-            for tag in reg["tags"]:
-                tag_options.add(tag)
-    tag_options = sorted(list(filter(None, tag_options)))
-
-    tag_options = [Markup(OPTION_TAG_TEMLPATE).format(tag=tag)
-        for tag in tag_options]
-
-    tag_options.insert(0,
-        SELECTED_OPTION_TAB_TEMPLATE.
-        format(tag=ALL_TAGS_NAME)
-    )
-
-    return flask.render_template(
-        "simple_register_lookup.html",
-        device_names = device_options,
-        tags = tag_options
-    )
-
+def render_modbus_map():
+    data = json.dumps(lj_modbus.rendered_modbus_data())
+    data = json.loads(data)
+    return flask.render_template("modbus.html", registers = data)
+    
 
 def prepareFilterArg(argument):
     """Parse the value of a filter argument.
@@ -208,14 +190,6 @@ def lookup():
     modbus_map_serialized = serialize.serialize_device_modbus_map(regs_to_use,
         dataset_cols)
     response = flask.make_response(json.dumps(modbus_map_serialized))
-    response.headers["X-XSS-Protection"] = "0"
-    response.headers["Access-Control-Allow-Origin"] = ALLOWED_REDISPLAY_DOMAIN
-    return response
-
-
-@app.route('/ljm_constants.json')
-def send_ljm_constants():
-    response = flask.make_response(json.dumps(json.loads(ljmmm.read_file("./ljm_constants/LabJack/LJM/ljm_constants.json"))))
     response.headers["X-XSS-Protection"] = "0"
     response.headers["Access-Control-Allow-Origin"] = ALLOWED_REDISPLAY_DOMAIN
     return response
@@ -379,6 +353,7 @@ def render_device_scribe(device_name, tags="ALL_TAGS_NAME", expand=False):
     for x in tagdata:
         combined_scribe_data += render_scribe(x,expand)
     return combined_scribe_data
+
 
 if __name__ == "__main__":
     app.debug = True

@@ -254,7 +254,7 @@ class LJScribeTests(unittest.TestCase):
                 "ORIG_TAG"
             )
 
-        self.assertEqual(str_summary.count("class-summary"), 3)
+       # self.assertEqual(str_summary.count("class-summary"), 3) Removed with new modbus map as this feature is no longer needed for modbus map
         self.assertEqual(str_summary.count("sub-tag"), 3)
         self.assertEqual(str_summary.count("individual-name"), 6)
         self.assertEqual(str_summary.count("individual-address"), 6)

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<style type="text/css">
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.css');
+@import url('//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css');
+ td.details-control {
+    background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+    .shortdes {
+    line-height: 1.7;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+}
+.tabledetails{
+   display: none;
+}
+.tableRow{
+
+    background-color: #b8daff;
+}
+.expand-details{
+    background-color: #d6d8db;
+}
+.combo-label {margin-bottom:.5em;}
+</style>
+  
+</head>
+
+<body>
+
+
+
+
+ <select id="Devices_Slect">
+  <option value="">All Devices</option>
+  <option value="DIGIT">DIGIT</option>
+  <option value="T7">T7</option>
+  <option value="T4">T4</option>
+</select><br /><br />
+
+<div class="table-responsive" style="padding: 10px;">
+  <table id="modbus" class="table">
+     <thead>
+      <tr class="table-info">
+         <th scope="col" style="width: 2%;"></th>
+         <th scope="col" style="width: 5%;">Name</th>
+         <th scope="col" style="width: 69%;">Description</th>
+         <th scope="col" style="width: 6%;">Start Address</th>
+         <th scope="col" style="width: 6%;">
+            <select id="Type" data-width="60%"  class="selectpicker">
+                <option value="">Type</option>
+                <option value="FLOAT32">FLOAT32</option>
+                <option value="UINT16">UINT16</option>
+                <option value="UINT32">UINT32</option>
+                <option value="FLOAT32">FLOAT32</option>
+                <option value="BYTE">BYTE</option>
+                <option value="STRING">STRING</option>
+            </select>
+         </th>
+         <th scope="col" style="width: 6%;" >
+             <select id="Access" data-width="60%"  class="selectpicker">
+                <option value="">Access</option>
+                <option value="W">W</option>
+                <option value="R">R</option>
+                <option value="RW">RW</option>
+            </select>
+         </th>
+         <th scope="col" style="width: 6%;">
+            
+       <select id="Tags" class="selectpicker" multiple title="Tags" data-width="60%" data-actions-box="true" data-live-search="true" " multiple data-selected-text-format="static" data-size="5">
+             <option value="AIN">AIN</option>
+            <option value="AIN_EF">AIN_EF</option>
+            <option value="ASYNCH">ASYNCH</option>
+            <option value="CONFIG">CONFIG</option>
+            <option value="CORE">CORE</option>
+            <option value="DAC">DAC</option>
+            <option value="DIO">DIO</option>
+            <option value="DIO_EF">DIO_EF</option>
+            <option value="ETHERNET">ETHERNET</option>
+            <option value="FILE_IO">FILE_IO</option>
+            <option value="I2C">I2C</option>
+            <option value="INTFLASH">INTFLASH</option>
+            <option value="LUA">LUA</option>
+            <option value="ONEWIRE">ONEWIRE</option>
+            <option value="RTC">RTC</option>
+            <option value="SBUS">SBUS</option>
+            <option value="SPI">SPI</option>
+            <option value="STREAM">STREAM</option>
+            <option value="TDAC">TDAC</option>
+            <option value="UART">UART</option>
+            <option value="USER_RAM">USER_RAM</option>
+            <option value="WATCHDOG">WATCHDOG</option>
+            <option value="WIFI">WIFI</option>
+</select>
+         </th>
+         <th scope="col" >Devices</th>
+         <th scope="col" >Other Names</th>
+         <th scope="col" >Other Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for register in registers %}
+      <tr  class="tableRow" data-child-value="{{loop.index}}" data-child-description="{{register.details|safe}}">
+        <td class="details-control"></td>
+        <td>{{register.name}}</td>
+        <td class="shortdes"><span id="shortdes">{{register.description|safe}}</span></td>
+        <td>{{register.address}}</td>
+        <td>{{register.type}}</td>
+        <td>{{register.readwrite}}</td>
+        <td>{{register.tags |safe}}</td>
+        <td> {{register.devices}}</td>
+        <td>{% for name in register.list_of_names %}{{name.name}} {% endfor %}</td>
+        <td>{% for address in register.list_of_names %}{{address.address}} {% endfor %}</td>
+    </tr>
+     <div id="{{loop.index}}"> </div>
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('select').selectpicker();
+    $('#content-hide').hide();
+      var table = $('#modbus').DataTable({
+         "columnDefs": [
+            {
+                "targets": [ 7 ],
+                "visible": false
+            },
+            {
+                "targets": [ 8 ],
+                "visible": false
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false
+            },
+            {
+                "targets": [ 5 ],
+                "bSortable": false
+            },
+            {
+                "targets": [ 4 ],
+                "bSortable": false
+            },
+            {
+                "targets": [ 6 ],
+                "bSortable": false
+            }
+        ]
+      });
+
+      // Add event listener for opening and closing details
+      $('#modbus').on('click', 'td.details-control', function () {
+          var tr = $(this).closest('tr');
+          var row = table.row(tr);
+       
+          if (row.child.isShown()) {
+              // This row is already open - close it
+              row.child.hide();
+              tr.removeClass('shown');
+              tr.find('#shortdes').show();
+          } else {
+              // Open this row
+              tr.find('#shortdes').hide();
+              row.child(tr.data('child-description')).show();
+              row.child().addClass('expand-details')
+              tr.addClass('shown');
+          }
+      });
+     $("#Devices_Slect").change(function()
+    {
+    table.columns( 7 ).search( $("#Devices_Slect option:selected").val() ).draw();
+   });
+      $("#Access").change(function()
+    {
+    table.columns( 5 ).search( $("#Access option:selected").val() ).draw();
+   });
+      $("#Type").change(function()
+    {
+    table.columns( 4 ).search( $("#Type option:selected").val() ).draw();
+   });
+       $("#Tags").change(function()
+    {
+    table.columns( 6 ).search( $("#Tags option:selected").val() ).draw();
+   });
+
+   
+   });  
+
+function showHidden(id){
+    $('#' + id).css('display', 'inline');
+    $('#' + id + '1').css('display', 'inline');
+    document.getElementById("show" + id).style.display = "none";
+    document.getElementById("show1" + id).style.display = "none";
+   
+    //document.getElementsByName(id).style.display = "inline";
+
+}
+</script>
+
+</body>
+</html>

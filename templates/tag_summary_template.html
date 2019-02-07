@@ -163,7 +163,7 @@
 {% endif %}
 
 <div class="table-responsive">
-   <table class="table table-hover" >
+   <table class="table" >
       <tr class="table-info">
          <th scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
          <th scope="col" style="width: 5%;">Name</th>
@@ -174,12 +174,12 @@
       </tr>
  
       {% for (orig_subtag, subtag) in tags %}
-      <tr class="table-primary">
-         <th scope="row" id="{{subtag.resolved[0].address}}">
+      <tr class="hover-color">
+         <th scope="row" id="{{subtag.resolved[0].address}}" >
             <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
          </th>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
-         <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')}}</span><br></td>
+         <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
          <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>
          <td class="tg-s268">{{subtag.unresolved.type}}</td>
          <td class="tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
