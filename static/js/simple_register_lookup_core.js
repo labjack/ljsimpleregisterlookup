@@ -53,7 +53,6 @@ function attachListeners(oTable, detailIndices, tableID)
     });
 }
 
-
 /**
  * Updates the registers data table with the given registers data.
  *
@@ -336,7 +335,6 @@ function RegistersTableRequester()
             CURRENT_APP_URL,
             data,
             function(data) {
-                data = linkTagsToDatasheet(data);
                 updateRegistersTable(data, tableContainer); 
                 callback();
             }
