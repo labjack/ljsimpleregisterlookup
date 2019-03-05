@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="static/js/jquery_1.10.2.min.js"></script>
+    <script src="static/js/jquery_2.1.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <style type="text/css">
       @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.css');
       @import url('//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css');
@@ -66,7 +65,7 @@
     </style>
   </head>
   <body>
-    <select id="Devices_Slect">
+    <select id="devices-select">
       <option value="">All Devices</option>
       <option value="DIGIT">DIGIT</option>
       <option value="T7">T7</option>
@@ -198,8 +197,8 @@
           detailsExpand(row, tr)
         });
 
-        $("#Devices_Slect").change(function () {
-          table.columns(7).search($("#Devices_Slect option:selected").val()).draw();
+        $("#devices-select").change(function () {
+          table.columns(7).search($("#devices-select option:selected").val()).draw();
         });
         $("#Access").change(function () {
           table.columns(5).search($("#Access option:selected").val()).draw();
