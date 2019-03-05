@@ -18,12 +18,6 @@ var DEPLOY_URL = BASE_URL + LOOKUP;
 var LOCAL_TEST_URL = LOOKUP;
 
 var CURRENT_APP_URL = DEPLOY_URL;
-
-var LJM_CONSTANTS_RAW_URL = BASE_URL + "/ljm_constants.json"
-var LJM_CONSTANTS_RAW = ""
-jQuery.get(LJM_CONSTANTS_RAW_URL, function(data) {
-    LJM_CONSTANTS_RAW = JSON.parse(data);
-});
 var anOpen = [];
 
 function attachListeners(oTable, detailIndices, tableID)
@@ -58,22 +52,7 @@ function attachListeners(oTable, detailIndices, tableID)
         }
     });
 }
-function linkTagsToDatasheet(data) {
-   TAG_MAPPINGS = LJM_CONSTANTS_RAW["tag_mappings"];
-   for (i = 0; i < data.length; i++) {
-    tagsToReplace = data[i][4].replace(" ","").split(",");
-    tagsData = ""
-    for(t = 0; t < tagsToReplace.length; t++) { 
-       if(typeof TAG_MAPPINGS[tagsToReplace[t]] !== "undefined"){
-          tagsData += '<a href="https://labjack.com'+ TAG_MAPPINGS[tagsToReplace[t]] +'" target="_blank">' + tagsToReplace[t]+ '</a>, '
-          }else{
-            tagsData += tagsToReplace[t] + ", ";
-          }
-    }
-    data[i][4] = tagsData.substring(0, tagsData.length - 2); 
- }
- return data;
-}
+
 
 /**
  * Updates the registers data table with the given registers data.

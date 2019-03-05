@@ -199,7 +199,7 @@ def lookup():
 def decodeview():
     target_code = flask.request.args.get("input", "")
     if(target_code[:1] == '@'):
-        printarg = request.args.get("printarg") # See Snippets/AutoScribePHPView
+        printarg = request.args.get("print") # See Snippets/AutoScribePHPView
         if(printarg is None):
             return render_scribe(target_code)
         else:

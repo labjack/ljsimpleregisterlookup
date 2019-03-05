@@ -129,3 +129,24 @@ The HTML template (written using "Jinja2":http://jinja.pocoo.org/docs/) used for
 
 *Update the Scribe JavaScript Logic*
 Similarly, the JavaScript for LJScribe's output can be found in /templates/scribe_postfix.html. Editing that file and redeploying will change the JS included with Scribe documentation output.
+
+*Create a new LJ Scribe string for Drupal View*
+To create a new LJ Scibe section (EG: in the data sheet) go to this "page":https://calebneelco.github.io/Autoscribe-Help/ use the the interface to create a new view string and then copy that string in to Drupal.  
+ (This is controlled by https://github.com/CalebNeelCO/Autoscribe-Help)
+
+
+h2. A Note About Printing With Expanded Register Details
+
+(Somewhat) often, users print the datasheet to either paper or pdf. For those users, we want the datasheet's ljscribe instances to show their full details. To do this, the @AutoScribePHPView@ modifies the URI when it detects the page is being printed (to paper or .pdf).
+
+For the old way, it added a @&print=true@ to the URI, e.g.:
+
+	@/decodeview?input=@registers(test):LUA_RUN&print=true@
+
+For the new way, it sets the @Expand@ key in the JSON to true, e.g.:
+
+	@/decodeview?input={%22TYPE%22:%20%22Auto%22,%20%22TITLE%22:%22test%22,%20%22REGISTER%22:%22LUA_RUN,CIO_STATE,MIO_STATE,AIN%23(0:11)%22,%20%22Expanded%22%20:%20true%20}@
+
+Decoded looks like:
+
+	@/decodeview?input={"TYPE": "Auto", "TITLE":"test", "REGISTER":"LUA_RUN,CIO_STATE,MIO_STATE,AIN#(0:11)", "Expanded" : true }@
