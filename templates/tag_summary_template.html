@@ -161,21 +161,21 @@
 {% if tags[0][0].title != "" %}
 <div class="divCaption">{{ tags[0][0].title }}</div>
 {% endif %}
-<div class="bootstrapiso" id="scribe">
+<div class="bootstrapiso" id="scrive">
 <div class="table-responsive">
    <table class="table" >
       <tr class="table-info">
-         <th id="scribe" scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
-         <th id="scribe" scope="col" style="width: 5%;">Name</th>
-         <th id="scribe" scope="col" style="width: 75%;">Description</th>
-         <th id="scribe" scope="col" style="width: 6%;">Start Address</th>
-         <th id="scribe" scope="col" style="width: 6%;">Type</th>
-         <th id="scribe" scope="col" style="width: 6%;">Access</th>
+         <th scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
+         <th scope="col" style="width: 5%;">Name</th>
+         <th scope="col" style="width: 75%;">Description</th>
+         <th scope="col" style="width: 6%;">Start Address</th>
+         <th scope="col" style="width: 6%;">Type</th>
+         <th scope="col" style="width: 6%;">Access</th>
       </tr>
  
       {% for (orig_subtag, subtag) in tags %}
       <tr class="hover-color">
-         <th id="scribe" scope="row" id="{{subtag.resolved[0].address}}" >
+         <th scope="row" id="{{subtag.resolved[0].address}}" >
             <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
          </th>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
