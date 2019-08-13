@@ -1773,14 +1773,14 @@
 	background-color: transparent
 }
 
-.bootstrapiso .table th,
+.bootstrapiso .table th#scribe,
 .bootstrapiso .table td#scribe {
 	padding: .75rem;
 	vertical-align: top;
 	border-top: 1px solid #dee2e6
 }
 
-.bootstrapiso .table thead th {
+.bootstrapiso .table thead th#scribe {
 	vertical-align: bottom;
 	border-bottom: 2px solid #dee2e6
 }
@@ -1793,7 +1793,7 @@
 	background-color: #fff
 }
 
-.bootstrapiso .table-sm th,
+.bootstrapiso .table-sm th#scribe,
 .bootstrapiso .table-sm td#scribe {
 	padding: .3rem
 }
@@ -1802,12 +1802,12 @@
 	border: 1px solid #dee2e6
 }
 
-.bootstrapiso .table-bordered th,
+.bootstrapiso .table-bordered th#scribe,
 .bootstrapiso .table-bordered td#scribe {
 	border: 1px solid #dee2e6
 }
 
-.bootstrapiso .table-bordered thead th,
+.bootstrapiso .table-bordered thead th#scribe,
 .bootstrapiso .table-bordered thead td#scribe {
 	border-bottom-width: 2px
 }
@@ -1831,12 +1831,12 @@
 }
 
 .bootstrapiso .table-hover .table-primary:hover>td#scribe,
-.bootstrapiso .table-hover .table-primary:hover>th {
+.bootstrapiso .table-hover .table-primary:hover>th#scribe {
 	background-color: #9fcdff
 }
 
 .bootstrapiso .table-secondary,
-.bootstrapiso .table-secondary>th,
+.bootstrapiso .table-secondary>th#scribe,
 .bootstrapiso .table-secondary>td#scribe {
 	background-color: #d6d8db
 }
@@ -1846,12 +1846,12 @@
 }
 
 .bootstrapiso .table-hover .table-secondary:hover>td#scribe,
-.bootstrapiso .table-hover .table-secondary:hover>th {
+.bootstrapiso .table-hover .table-secondary:hover>th#scribe {
 	background-color: #c8cbcf
 }
 
 .bootstrapiso .table-success,
-.bootstrapiso .table-success>th,
+.bootstrapiso .table-success>th#scribe,
 .bootstrapiso .table-success>td#scribe {
 	background-color: #c3e6cb
 }
@@ -1861,12 +1861,12 @@
 }
 
 .bootstrapiso .table-hover .table-success:hover>td#scribe,
-.bootstrapiso .table-hover .table-success:hover>th {
+.bootstrapiso .table-hover .table-success:hover>th#scribe {
 	background-color: #b1dfbb
 }
 
 .bootstrapiso .table-info,
-.bootstrapiso .table-info>th,
+.bootstrapiso .table-info>th#scribe,
 .bootstrapiso .table-info>td#scribe {
 	background-color: #bee5eb
 }
@@ -1876,12 +1876,12 @@
 }
 
 .bootstrapiso .table-hover .table-info:hover>td#scribe,
-.bootstrapiso .table-hover .table-info:hover>th {
+.bootstrapiso .table-hover .table-info:hover>th#scribe {
 	background-color: #abdde5
 }
 
 .bootstrapiso .table-warning,
-.bootstrapiso .table-warning>th,
+.bootstrapiso .table-warning>th#scribe,
 .bootstrapiso .table-warning>td#scribe {
 	background-color: #ffeeba
 }
@@ -1891,12 +1891,12 @@
 }
 
 .bootstrapiso .table-hover .table-warning:hover>td#scribe,
-.bootstrapiso .table-hover .table-warning:hover>th {
+.bootstrapiso .table-hover .table-warning:hover>th#scribe {
 	background-color: #ffe8a1
 }
 
 .bootstrapiso .table-danger,
-.bootstrapiso .table-danger>th,
+.bootstrapiso .table-danger>th#scribe,
 .bootstrapiso .table-danger>td#scribe {
 	background-color: #f5c6cb
 }
@@ -1906,12 +1906,12 @@
 }
 
 .bootstrapiso .table-hover .table-danger:hover>td#scribe,
-.bootstrapiso .table-hover .table-danger:hover>th {
+.bootstrapiso .table-hover .table-danger:hover>th#scribe {
 	background-color: #f1b0b7
 }
 
 .bootstrapiso .table-light,
-.bootstrapiso .table-light>th,
+.bootstrapiso .table-light>th#scribe,
 .bootstrapiso .table-light>td#scribe {
 	background-color: #fdfdfe
 }
@@ -1921,12 +1921,12 @@
 }
 
 .bootstrapiso .table-hover .table-light:hover>td#scribe,
-.bootstrapiso .table-hover .table-light:hover>th {
+.bootstrapiso .table-hover .table-light:hover>th#scribe {
 	background-color: #ececf6
 }
 
 .bootstrapiso .table-dark,
-.bootstrapiso .table-dark>th,
+.bootstrapiso .table-dark>th#scribe,
 .bootstrapiso .table-dark>td#scribe {
 	background-color: #c6c8ca
 }
@@ -1936,12 +1936,12 @@
 }
 
 .bootstrapiso .table-hover .table-dark:hover>td#scribe,
-.bootstrapiso .table-hover .table-dark:hover>th {
+.bootstrapiso .table-hover .table-dark:hover>th#scribe {
 	background-color: #b9bbbe
 }
 
 .bootstrapiso .table-active,
-.bootstrapiso .table-active>th,
+.bootstrapiso .table-active>th#scribe,
 .bootstrapiso .table-active>td#scribe {
 	background-color: rgba(0, 0, 0, 0.075)
 }
@@ -1951,17 +1951,17 @@
 }
 
 .bootstrapiso .table-hover .table-active:hover>td#scribe,
-.bootstrapiso .table-hover .table-active:hover>th {
+.bootstrapiso .table-hover .table-active:hover>th#scribe {
 	background-color: rgba(0, 0, 0, 0.075)
 }
 
-.bootstrapiso .table .thead-dark th {
+.bootstrapiso .table .thead-dark th#scribe {
 	color: #fff;
 	background-color: #212529;
 	border-color: #32383e
 }
 
-.bootstrapiso .table .thead-light th {
+.bootstrapiso .table .thead-light th#scribe {
 	color: #495057;
 	background-color: #e9ecef;
 	border-color: #dee2e6
@@ -1972,9 +1972,9 @@
 	background-color: #212529
 }
 
-.bootstrapiso .table-dark th,
+.bootstrapiso .table-dark th#scribe,
 .bootstrapiso .table-dark td#scribe,
-.bootstrapiso .table-dark thead th {
+.bootstrapiso .table-dark thead th#scribe {
 	border-color: #32383e
 }
 
@@ -9264,10 +9264,10 @@
 		border-collapse: collapse!important
 	}
 	.bootstrapiso .table td#scribe,
-	.bootstrapiso .table th {
+	.bootstrapiso .table th#scribe {
 		background-color: #fff!important
 	}
-	.bootstrapiso .table-bordered th,
+	.bootstrapiso .table-bordered th#scribe,
 	.bootstrapiso .table-bordered td#scribe {
 		border: 1px solid #ddd!important
 	}
