@@ -161,33 +161,33 @@
 {% if tags[0][0].title != "" %}
 <div class="divCaption">{{ tags[0][0].title }}</div>
 {% endif %}
-<div class="bootstrapiso" id="scrive">
-<div class="table-responsive">
-   <table class="table" >
-      <tr class="table-info">
-         <th scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
-         <th scope="col" style="width: 5%;">Name</th>
-         <th scope="col" style="width: 75%;">Description</th>
-         <th scope="col" style="width: 6%;">Start Address</th>
-         <th scope="col" style="width: 6%;">Type</th>
-         <th scope="col" style="width: 6%;">Access</th>
+<div class="bootstrapiso">
+<div class="bootstrapiso table-responsive">
+   <table class="bootstrapiso table" >
+      <tr class="bootstrapiso table-info">
+         <th class="bootstrapiso" scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
+         <th class="bootstrapiso" scope="col" style="width: 5%;">Name</th>
+         <th class="bootstrapiso" scope="col" style="width: 75%;">Description</th>
+         <th class="bootstrapiso" scope="col" style="width: 6%;">Start Address</th>
+         <th class="bootstrapiso" scope="col" style="width: 6%;">Type</th>
+         <th class="bootstrapiso" scope="col" style="width: 6%;">Access</th>
       </tr>
  
       {% for (orig_subtag, subtag) in tags %}
-      <tr class="hover-color">
-         <th scope="row" id="{{subtag.resolved[0].address}}" >
+      <tr class="bootstrapiso hover-color">
+         <th class="bootstrapiso" scope="row" id="{{subtag.resolved[0].address}}" >
             <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
          </th>
-         <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
-         <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
-         <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>
-         <td class="tg-s268">{{subtag.unresolved.type}}</td>
-         <td class="tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
+         <td class="bootstrapiso tg-s268">{{ get_full_name(orig_subtag) }}</td>
+         <td class="bootstrapiso shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
+         <td class="bootstrapiso tg-s268">{{subtag.resolved[0].address}}<br></td>
+         <td class="bootstrapiso tg-s268">{{subtag.unresolved.type}}</td>
+         <td class="bootstrapiso tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
       </tr>
-      <tr  class="table-secondary register-details" id="{{subtag.resolved[0].address}}details">
-         <td scope="row" >
+      <tr  class="bootstrapiso table-secondary register-details" id="{{subtag.resolved[0].address}}details">
+         <td class="bootstrapiso" scope="row" >
          </td>
-         <td colspan="5" style="">{{ registerBody(orig_subtag, subtag) }}
+         <td class="bootstrapiso" colspan="5" style="">{{ registerBody(orig_subtag, subtag) }}
          </td>
       </tr>
 
