@@ -33,7 +33,7 @@
         -webkit-line-clamp: 1;
       }
       .shortdes{
-        max-width: 55em;
+        max-width: 80%;
         /*width: 100px;*/
         white-space: nowrap;
         -o-text-overflow: ellipsis;
@@ -50,7 +50,7 @@
       }
       .tableRow{
         background-color: #b8daff;
-        /*height: 100px;*/
+        height: 3em;
       }
       .expand-details{
         background-color: #d6d8db;
@@ -77,10 +77,13 @@
       .text-sizing{
         font-size: 0.8rem;
       }
+        tr.border_bottom td {
+    border-bottom:1pt solid black;
+     }
     </style>
   </head>
   <body class="text-sizing">
-    <div style="width: 100%;">
+    <div class="container-fluid">
     <select id="devices-select">
       <option value="">All Devices</option>
       <option value="DIGIT">DIGIT</option>
@@ -89,15 +92,15 @@
     </select>
     <br /><br />
     <div  style="padding: 10px;">
-      <table id="modbus" class="table">
+      <table id="modbus" class="display" style="width:100%;table-layout: fixed;">
         <thead>
           <tr class="table-info">
-            <th scope="col" style="width: 2%;"></th>
-            <th scope="col" style="width: 5%;">Name</th>
-            <th scope="col" style="width: 60%;">Description</th>
+            <th scope="col" style="width: 3%;"></th>
+            <th scope="col" style="width: 14%;">Name</th>
+            <th scope="col" style="width: 30%;">Description</th>
             <th scope="col" style="width: 6%;">Start Address</th>
             <th scope="col" style="width: 6%;">
-              <select id="Type" data-width="75%"  class="selectpicker">
+              <select id="Type" data-width="30%"  class="selectpicker">
                 <option value="">Type</option>
                 <option value="FLOAT32">FLOAT32</option>
                 <option value="UINT16">UINT16</option>
@@ -108,15 +111,15 @@
               </select>
             </th>
             <th scope="col" style="width: 6%;">
-              <select id="Access" data-width="70%" class="selectpicker">
+              <select id="Access" data-width="45%" class="selectpicker">
                 <option value="">Access</option>
                 <option value="W">W</option>
                 <option value="R">R</option>
                 <option value="RW">RW</option>
               </select>
             </th>
-            <th scope="col" style="width: 9%;">
-              <select id="Tags" class="selectpicker" multiple title="Tags" data-width="50%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
+            <th scope="col" style="width: 6%;">
+              <select id="Tags" class="selectpicker" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
                 <option value="AIN">AIN</option>
                 <option value="AIN_EF">AIN_EF</option>
                 <option value="ASYNCH">ASYNCH</option>
@@ -149,10 +152,10 @@
         </thead>
         <tbody>
           {% for register in registers %}
-          <tr  class="tableRow" data-child-value="{{loop.index}}" data-child-description="{{register.details|safe}}">
+          <tr  class="tableRow border_bottom" data-child-value="{{loop.index}}" data-child-description="{{register.details|safe}}">
             <td class="details-control"></td>
             <td>{{register.name}}</td>
-            <td><span class="desline"><i class="shortdes">{{register.description|safe}}</i>&nbsp;<i class="details-expand shortdes" >More..</i></span></td>
+            <td><span class="desline"><i class="shortdes">{{register.description|safe}}</i>&nbsp;&nbsp;&nbsp;<i class="details-expand shortdes" >More..</i>&nbsp;&nbsp;&nbsp;</span></td>
             <td>{{register.address}}</td>
             <td>{{register.type}}</td>
             <td>{{register.readwrite}}</td>
