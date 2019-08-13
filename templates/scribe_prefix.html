@@ -35,6 +35,14 @@
     margin-bottom: 1rem;
     background-color: transparent;
     border-collapse: collapse;
+    border-spacing: 2px;
+    -webkit-border-horizontal-spacing: 2px;
+    -webkit-border-vertical-spacing: 2px;
+    border-color: grey;
+    border-top-color: grey;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    border-left-color: grey;
 
 }
 .lj-scribe-tag tbody {
@@ -66,6 +74,13 @@
     border-spacing: 2px;
     border-color: grey;
     font-variant: normal;
+    -webkit-border-horizontal-spacing: 2px;
+    -webkit-border-vertical-spacing: 2px;
+    border-color: grey;
+    border-top-color: grey;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    border-left-color: grey;
 }
 .lj-scribe-tag .table-info {
     display: table-row;
@@ -88,7 +103,7 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.lj-scribe-tag .table-info>th{
+.lj-scribe-tag .table-info th{
     background-color: #bee5eb;
     padding: .75rem;
     vertical-align: top;
@@ -120,7 +135,12 @@
     vertical-align: middle;
     border-style: none;
 }
-
+.lj-scribe-tag .table .table-info .scribe-th{
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: #000000;
+}
 
 @media print {
     .lj-scribe-tag {
