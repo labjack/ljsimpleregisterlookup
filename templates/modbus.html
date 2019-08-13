@@ -52,6 +52,9 @@
         background-color: #b8daff;
         height: 3em;
       }
+      .registerName{
+        word-wrap: break-word;
+      }
       .expand-details{
         background-color: #d6d8db;
         max-width:60em;
@@ -154,7 +157,7 @@
           {% for register in registers %}
           <tr  class="tableRow border_bottom" data-child-value="{{loop.index}}" data-child-description="{{register.details|safe}}">
             <td class="details-control"></td>
-            <td>{{register.name}}</td>
+            <td><span class="registerName">{{register.name}}</span></td>
             <td><span class="desline"><i class="shortdes">{{register.description|safe}}</i>&nbsp;&nbsp;&nbsp;<i class="details-expand shortdes" >More..</i>&nbsp;&nbsp;&nbsp;</span></td>
             <td>{{register.address}}</td>
             <td>{{register.type}}</td>
