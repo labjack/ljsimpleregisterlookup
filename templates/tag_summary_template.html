@@ -175,7 +175,7 @@
  
       {% for (orig_subtag, subtag) in tags %}
       <tr class="hover-color">
-         <th scope="row" id="{{subtag.resolved[0].address}}" >
+         <th scope="row" id="{{subtag.resolved[0].address}}" class="scribe-th">
             <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
          </th>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
