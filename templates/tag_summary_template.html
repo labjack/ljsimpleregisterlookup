@@ -175,9 +175,9 @@
  
       {% for (orig_subtag, subtag) in tags %}
       <tr class="hover-color">
-         <th scope="row" id="{{subtag.resolved[0].address}}" class="scribe-th">
+         <td scope="row" id="{{subtag.resolved[0].address}}" class="scribe-th">
             <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
-         </th>
+         </td>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
          <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
          <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>

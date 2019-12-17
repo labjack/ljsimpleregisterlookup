@@ -357,5 +357,7 @@ def render_device_scribe(device_name, tags="ALL_TAGS_NAME", expand=False):
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host=os.environ["IP"], port=int(os.environ["PORT"]))
+    #app.run(host=os.environ["IP"], port=int(os.environ["PORT"]))
+    app.run()
+
     

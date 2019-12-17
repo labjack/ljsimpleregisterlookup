@@ -48,7 +48,7 @@ try {
     }
     });
   $('table').find('tr').click( function(){
-  var row = $(this).find('th:first').attr('id');
+  var row = $(this).find('td:first').attr('id');
   if ( $('#'+row+'details').css('display') === 'none' ){
            $('#'+row+'details').show();
            $('#'+row+'SPN').hide();
