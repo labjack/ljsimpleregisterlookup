@@ -20,6 +20,7 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 	for k in range(len(raw_registers)):
 		list_of_names = []
 		extra_data = ""
+		description = ""
 
 		if len(raw_registers[k][1]) > 1: #map expanded registers to main register
 			for t in range(len(raw_registers[k][1])):
@@ -40,6 +41,8 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 
 		if 'description' in raw_registers[k][0]: #add description to sub details
 			description = raw_registers[k][0]['description']
+		else:
+			description = "No Description"
 
 		if 'default' in raw_registers[k][0]: #add default value to sub details
 			if raw_registers[k][0]['default'] != 0:
@@ -47,7 +50,7 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 
 		if 'streamable' in raw_registers[k][0]:  #add streamable to sub details
 			if raw_registers[k][0]['streamable']:
-				extra_data += '&nbsp; &#8226; This register may be streamed <br/>'
+				extra_data += "&nbsp; &#8226; This register may be <a href='https://labjack.com/support/datasheets/t-series/communication/stream-mode'>streamed</a><br/>" 
 
 		if 'isBuffer' in raw_registers[k][0]: #add isBuffer to sub details
 			if raw_registers[k][0]['isBuffer']:

@@ -38,7 +38,7 @@
                <li>Default value: {{subtag.unresolved.default}}</li>
                {% endif %}
                {% if subtag.unresolved.streamable %}
-               <li>This register may be streamed</li>
+               <li>This register may be <a href='https://labjack.com/support/datasheets/t-series/communication/stream-mode'>streamed</a></li>
                {% endif %}
                {% if subtag.unresolved.isBuffer %}
                <li>This register is a <a href="https://labjack.com/support/datasheets/t7/communication/modbus-map/buffer-registers">Buffer Register</a></li>
@@ -174,17 +174,19 @@
       </tr>
  
       {% for (orig_subtag, subtag) in tags %}
+      {% set random_num = range(1, 5000) | random %}
+      
       <tr class="hover-color">
-         <td scope="row" id="{{subtag.resolved[0].address}}" class="scribe-th">
-            <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" class="expand-img">
+         <td scope="row" id="{{subtag.resolved[0].address}}{{ random_num }}" class="scribe-th">
+            <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}{{ random_num }}IMG" class="expand-img">
          </td>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
-         <td class="shortdes"><span id="{{subtag.resolved[0].address}}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
+         <td class="shortdes"><span id="{{subtag.resolved[0].address}}{{ random_num }}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
          <td class="tg-s268">{{subtag.resolved[0].address}}<br></td>
          <td class="tg-s268">{{subtag.unresolved.type}}</td>
          <td class="tg-0lax">{% if subtag.resolved[0].read %} {% if subtag.resolved[0].write %} R/W {% else %} R {% endif %} {% elif subtag.resolved[0].write %} W {% endif %}</td>
       </tr>
-      <tr  class="table-secondary register-details" id="{{subtag.resolved[0].address}}details">
+      <tr  class="table-secondary register-details" id="{{subtag.resolved[0].address}}{{ random_num }}details">
          <td scope="row" >
          </td>
          <td colspan="5" style="">{{ registerBody(orig_subtag, subtag) }}

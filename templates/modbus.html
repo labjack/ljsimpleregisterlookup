@@ -6,9 +6,16 @@
     <script src="static/js/jquery_1.10.2.min.js"></script>
     <script src="static/js/jquery_2.1.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+
+
     <style type="text/css">
       @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.css');
       @import url('//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css');
@@ -22,10 +29,12 @@
         background-color: #96c8ff;
       }
       tr.shown td.details-control{
-        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/MediaWiki_Vector_skin_action_arrow.svg/2000px-MediaWiki_Vector_skin_action_arrow.svg.png')center center;
+        background: url('http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png')center center;
         background-repeat: no-repeat;
         background-size: 35px 35px;
-        transform: rotate(180deg);
+      }
+      .hover-color:hover {
+        background-color: #7DAEC6;
       }
       .desline{
          white-space: nowrap;
@@ -83,25 +92,22 @@
         tr.border_bottom td {
     border-bottom:1pt solid black;
      }
+     .toolbar {
+    float: left;
+    }
     </style>
   </head>
-  <body class="text-sizing">
-    <div class="container-fluid">
-    <select id="devices-select">
-      <option value="">All Devices</option>
-      <option value="DIGIT">DIGIT</option>
-      <option value="T7">T7</option>
-      <option value="T4">T4</option>
-    </select>
-    <br /><br />
+  <body class="text-sizing" style=" background-color: #AED3E5;">
+    <div style="width: 850px;">
+    
     <div  style="padding: 10px;">
       <table id="modbus" class="display" style="width:100%;table-layout: fixed;">
         <thead>
           <tr class="table-info">
             <th scope="col" style="width: 3%;"></th>
-            <th scope="col" style="width: 14%;">Name</th>
-            <th scope="col" style="width: 30%;">Description</th>
-            <th scope="col" style="width: 6%;">Start Address</th>
+            <th scope="col" style="width: 20%;" class="hover-color">Name</th>
+            <th scope="col" style="width: 24%;" class="hover-color">Description</th>
+            <th scope="col" style="width: 6%;" class="hover-color">Start Address</th>
             <th scope="col" style="width: 6%;">
               <select id="Type" data-width="30%"  class="selectpicker">
                 <option value="">Type</option>
@@ -115,10 +121,9 @@
             </th>
             <th scope="col" style="width: 6%;">
               <select id="Access" data-width="45%" class="selectpicker">
-                <option value="">Access</option>
+                <option value="">R/W</option>
                 <option value="W">W</option>
                 <option value="R">R</option>
-                <option value="RW">RW</option>
               </select>
             </th>
             <th scope="col" style="width: 6%;">
@@ -181,9 +186,17 @@
         $('#content-hide').hide();
         var table = $('#modbus').DataTable({
           "dom": '<f><t><pil>',
+          "dom": '<"toolbar">frtip',
+          fnInitComplete: function(){
+            $('div.toolbar').html('<select id="devices-select" class="selectpicker"><option value="">All Devices</option><option value="DIGIT">DIGIT</option><option value="T7">T7</option><option value="T4">T4</option></select>');
+          },
           "columnDefs": [{
               "targets": [7],
               "visible": false
+            },
+            {
+              "targets": [0],
+              "bSortable": false
             },
             {
               "targets": [8],
