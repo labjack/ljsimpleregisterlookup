@@ -165,7 +165,7 @@
 <div class="table-responsive">
    <table class="table" >
       <tr class="table-info">
-         <th class="scribe-th" scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="expand-all"></th>
+         <th class="scribe-th" scope="col" style="width: 2%;"><img src="https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png" id="expand-all"></th>
          <th class="scribe-th" scope="col" style="width: 5%;">Name</th>
          <th class="scribe-th" scope="col" style="width: 75%;">Description</th>
          <th class="scribe-th" scope="col" style="width: 6%;">Start Address</th>
@@ -178,7 +178,7 @@
       
       <tr class="hover-color">
          <td scope="row" id="{{subtag.resolved[0].address}}{{ random_num }}" class="scribe-th">
-            <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}{{ random_num }}IMG" class="expand-img">
+            <img src="https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png" id="{{subtag.resolved[0].address}}{{ random_num }}IMG" class="expand-img">
          </td>
          <td class="tg-s268">{{ get_full_name(orig_subtag) }}</td>
          <td class="shortdes"><span id="{{subtag.resolved[0].address}}{{ random_num }}SPN" class="short-description"> {{subtag.resolved[0].description|truncate(255,False,'...')|safe}}</span><br></td>
