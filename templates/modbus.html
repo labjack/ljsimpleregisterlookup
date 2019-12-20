@@ -20,18 +20,18 @@
       @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.css');
       @import url('//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css');
       td.details-control{
-        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png')center center;
+        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png')center center;
         background-repeat: no-repeat;
-        background-size: 35px 35px;
+        background-size: 15px 15px;
         cursor: pointer;
       }
       td.details-control:hover { 
         background-color: #96c8ff;
       }
       tr.shown td.details-control{
-        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_grey.png')center center;
+        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png')center center;
         background-repeat: no-repeat;
-        background-size: 35px 35px;
+        background-size: 15px 15px;
       }
       .hover-color:hover {
         background-color: #7DAEC6;
@@ -84,10 +84,12 @@
         display: none;
       }
       #modbus div.filter-option{
-        padding-left: 10px !important;
+        text-align: center;
+        padding-left: 1px !important;
+        padding-right: 1px !important;
       }
       .text-sizing{
-        font-size: 0.8rem;
+        font-size: 13px;
       }
         tr.border_bottom td {
     border-bottom:1pt solid black;
@@ -98,18 +100,18 @@
     </style>
   </head>
   <body class="text-sizing" style=" background-color: #AED3E5;">
-    <div style="width: 850px;">
+    <div style="width: 800px;">
     
     <div  style="padding: 10px;">
-      <table id="modbus" class="display" style="width:100%;table-layout: fixed;">
+      <table id="modbus" class="display" style="width:800px;table-layout: fixed;">
         <thead>
           <tr class="table-info">
-            <th scope="col" style="width: 3%;"></th>
-            <th scope="col" style="width: 20%;" class="hover-color">Name</th>
-            <th scope="col" style="width: 24%;" class="hover-color">Description</th>
-            <th scope="col" style="width: 6%;" class="hover-color">Start Address</th>
-            <th scope="col" style="width: 6%;">
-              <select id="Type" data-width="30%"  class="selectpicker">
+            <th scope="col" style="width: 15px;"></th>
+            <th scope="col" style="width: 150px;" class="hover-color">Name</th>
+            <th scope="col" style="width: 400px;" class="hover-color">Description</th>
+            <th scope="col" style="width: 20px; text-align: center;" class="hover-color">Start Address</th>
+            <th scope="col" style="width: 40px;">
+              <select id="Type" data-width="15%"  class="selectpicker">
                 <option value="">Type</option>
                 <option value="FLOAT32">FLOAT32</option>
                 <option value="UINT16">UINT16</option>
@@ -119,14 +121,14 @@
                 <option value="STRING">STRING</option>
               </select>
             </th>
-            <th scope="col" style="width: 6%;">
-              <select id="Access" data-width="45%" class="selectpicker">
+            <th scope="col" style="width: 40px;">
+              <select id="Access" data-width="10%" >
                 <option value="">R/W</option>
                 <option value="W">W</option>
                 <option value="R">R</option>
               </select>
             </th>
-            <th scope="col" style="width: 6%;">
+            <th scope="col" style="width: 70px;">
               <select id="Tags" class="selectpicker" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
                 <option value="AIN">AIN</option>
                 <option value="AIN_EF">AIN_EF</option>
@@ -164,10 +166,10 @@
             <td class="details-control"></td>
             <td><span class="registerName">{{register.name}}</span></td>
             <td><span class="desline"><i class="shortdes">{{register.description|safe}}</i>&nbsp;&nbsp;&nbsp;<i class="details-expand shortdes" >More..</i>&nbsp;&nbsp;&nbsp;</span></td>
-            <td>{{register.address}}</td>
+            <td style="text-align: center;">{{register.address}}</td>
             <td>{{register.type}}</td>
-            <td>{{register.readwrite}}</td>
-            <td>{{register.tags |safe}}</td>
+            <td style="text-align: center;">{{register.readwrite}}</td>
+            <td >{{register.tags |safe}}</td>
             <td>{{register.devices}}</td>
             <td>{% for name in register.list_of_names %}{{name.name}} {% endfor %}</td>
             <td>{% for address in register.list_of_names %}{{address.address}} {% endfor %}</td>
@@ -190,13 +192,19 @@
           fnInitComplete: function(){
             $('div.toolbar').html('<select id="devices-select" class="selectpicker"><option value="">All Devices</option><option value="DIGIT">DIGIT</option><option value="T7">T7</option><option value="T4">T4</option></select>');
           },
+          "order": [], //Initial no order.
+          "aaSorting": [],
           "columnDefs": [{
-              "targets": [7],
-              "visible": false
-            },
-            {
               "targets": [0],
               "bSortable": false
+            },
+            {
+              targets: [2],
+              "bSortable": false
+            },
+            {
+              "targets": [7],
+              "visible": false
             },
             {
               "targets": [8],
@@ -218,8 +226,11 @@
               "targets": [6],
               "bSortable": false
             }
-          ]
+          ],
+
         });
+
+
 
         // Add event listener for opening and closing details
         $('#modbus').on('click', 'td.details-control', function () {
