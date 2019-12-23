@@ -83,6 +83,10 @@
       .table_dropdown .dropdown-toggle::after{
         display: none;
       }
+      .drop_left .dropdown-menu{
+        left: -100px !important;
+      }
+      
       #modbus div.filter-option{
         text-align: center;
         padding-left: 1px !important;
@@ -129,7 +133,7 @@
               </select>
             </th>
             <th scope="col" style="width: 70px;">
-              <select id="Tags" class="selectpicker table_dropdown" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
+              <select id="Tags" class="selectpicker table_dropdown drop_left" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
                 <option value="AIN">AIN</option>
                 <option value="AIN_EF">AIN_EF</option>
                 <option value="ASYNCH">ASYNCH</option>
