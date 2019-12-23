@@ -34,13 +34,13 @@ try {
         if ( $('.register-details').css('display') === 'none' ){
             $('.register-details').show();
             $('.short-description').hide();
-            $('#expand-all').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"); 
-            $('.expand-img').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+            $('#expand-all').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png"); 
+            $('.expand-img').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png");
         }else{
             $('.register-details').hide();
             $('.short-description').show();
-            $('#expand-all').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
-            $('.expand-img').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+            $('#expand-all').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png");
+            $('.expand-img').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png");
             $('.sometimes-shown').hide();
             $('.collapsed-content-expander').show();
         }
@@ -52,11 +52,11 @@ try {
   if ( $('#'+row+'details').css('display') === 'none' ){
            $('#'+row+'details').show();
            $('#'+row+'SPN').hide();
-           $('#'+row+'IMG').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+           $('#'+row+'IMG').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png");
         }else{
             $('#'+row+'details').hide();
             $('#'+row+'SPN').show();
-            $('#'+row+'IMG').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+            $('#'+row+'IMG').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png");
         }
         sleep(1000);
         });   
@@ -64,16 +64,16 @@ try {
    window.onbeforeprint = function() {
 $('.register-details').show();
             $('.short-description').hide();
-            $('#expand-all').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"); 
-            $('.expand-img').attr("src","http://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png");
+            $('#expand-all').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png"); 
+            $('.expand-img').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png");
              $('.sometimes-shown').show();
              $('.collapsed-content-expander').hide();
    }
    window.onafterprint = function() {
     $('.register-details').hide();
     $('.short-description').show();
-    $('#expand-all').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
-    $('.expand-img').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png");
+    $('#expand-all').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png");
+    $('.expand-img').attr("src","https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png");
     $('.sometimes-shown').hide();
     $('.collapsed-content-expander').show();
 };
