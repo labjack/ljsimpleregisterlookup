@@ -103,7 +103,7 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 			expand_address = ""
 			expand_address_show = ""
 			expand_id= raw_registers[k][0]["address"]
-			extra_data += "<br/><table class='sub-details'><thead><tr><td>Expanded Names</td><td>Address</td></tr></thead><tbody>"
+			table_header = "<br/><table class='sub-details'><thead><tr><td>Expanded Names</td><td>Address</td></tr></thead><tbody>"
 			for m in range(len(raw_registers[k][0]['list_of_names'])):
 				address = raw_registers[k][0]['list_of_names'][m]['address']
 				name = raw_registers[k][0]['list_of_names'][m]['name']
@@ -112,13 +112,15 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 					expand_names_show +=  name + ", "
 					expand_address_show +=  str(address) + ", "
 				elif(m == 3):
-					expand_names += " <a onclick='showHidden(" + str(expand_id)+ ")'" + " href='#' id='show" + str(expand_id)+ "' style='display: inline;'>Show All</a><span class='content-hide'  style='display: none;' id='" + str(expand_id)+ "'>" + name + ", "
-					expand_address += "<a onclick='showHidden(" + str(expand_id)+ ")'" +" href='#' id='show1" + str(expand_id)+ "' style='display: inline;'>Show All</a><span class='content-hide' style='display: none;' id='" + str(expand_id)+ "1'>" + str(address) + ", "
+					table_header = "<br/><table class='sub-details'><thead><tr><td>Expanded Names &nbsp;<a onclick='showHidden(" + str(expand_id)+ ")'" + " href='#' id='show" + str(expand_id)+ "' style='display: inline;'><img src='https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png' id='show" + str(expand_id)+ "img' alt='Show all' height='15' width='15'></a></td><td>Address  &nbsp;<a onclick='showHidden(" + str(expand_id)+ ")'" + " href='#' id='show1" + str(expand_id)+ "' style='display: inline;'><img src='https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png' id='show" + str(expand_id)+ "img1' alt='Show all' height='15' width='15'></a></td></tr></thead><tbody>"
+					expand_names += "<span class='content-hide'  style='display: none;' id='" + str(expand_id)+ "'>" + name + ", "
+					expand_address += "<span class='content-hide' style='display: none;' id='" + str(expand_id)+ "1'>" + str(address) + ", "
 				else:
 					expand_names +=  name + ", "
 					expand_address +=  str(address) + ", "
 			expand_names_show += expand_names
 			expand_address_show += expand_address
+			extra_data += table_header
 			extra_data +=  "<tr><td>" + expand_names_show[:-2] + "</span></td><td>"+ expand_address_show[:-2]+ "</span></td></tr> </tbody></table>"
 
 		raw_registers[k][0]['details'] = "<div class='expand-details'> Name: " + raw_registers[k][0]["name"] + "<br/>Description: "+ description + " <br/> " + extra_data + "</div> " #"+ raw_registers[k][0]['description'] + "
