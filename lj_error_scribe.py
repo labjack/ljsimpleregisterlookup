@@ -16,7 +16,7 @@ def format_errors(high, low):
     for x in xrange(0,len(output_dict)):
     	data = json.loads(json.dumps(output_dict[x][0]))
     	if "description" in data:
-  			data["description"] = ljmmm.apply_anchors(data["description"])
+        			data["description"] = ljmmm.apply_anchors(data["description"])
     	output_dict[x] = data
     return flask.render_template("tag_summary_template_error.html", tag =  output_dict)
 
