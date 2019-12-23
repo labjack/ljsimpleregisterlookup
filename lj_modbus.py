@@ -50,7 +50,7 @@ def get_formatted_modbus_data(raw_registers=DEFAULT_JSON):
 
 		if 'streamable' in raw_registers[k][0]:  #add streamable to sub details
 			if raw_registers[k][0]['streamable']:
-				extra_data += "&nbsp; &#8226; This register may be <a href='https://labjack.com/support/datasheets/t-series/communication/stream-mode'>streamed</a><br/>" 
+				extra_data += "&nbsp; &#8226; This register may be <a href='https://labjack.com/support/datasheets/t-series/communication/stream-mode' target='_blank'>streamed</a><br/>" 
 
 		if 'isBuffer' in raw_registers[k][0]: #add isBuffer to sub details
 			if raw_registers[k][0]['isBuffer']:
