@@ -80,7 +80,7 @@
       i.details-expand:hover {
         text-decoration:underline;
       }
-      .dropdown-toggle::after{
+      .table_dropdown .dropdown-toggle::after{
         display: none;
       }
       #modbus div.filter-option{
@@ -111,7 +111,7 @@
             <th scope="col" style="width: 400px;" class="hover-color">Description</th>
             <th scope="col" style="width: 20px; text-align: center;" class="hover-color">Start Address</th>
             <th scope="col" style="width: 40px;">
-              <select id="Type" data-width="15%"  class="selectpicker">
+              <select id="Type" data-width="15%"  class="selectpicker table_dropdown">
                 <option value="">Type</option>
                 <option value="FLOAT32">FLOAT32</option>
                 <option value="UINT16">UINT16</option>
@@ -122,14 +122,14 @@
               </select>
             </th>
             <th scope="col" style="width: 40px;">
-              <select id="Access" data-width="10%" >
+              <select id="Access" data-width="10%" class="selectpicker table_dropdown">
                 <option value="">R/W</option>
                 <option value="W">W</option>
                 <option value="R">R</option>
               </select>
             </th>
             <th scope="col" style="width: 70px;">
-              <select id="Tags" class="selectpicker" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
+              <select id="Tags" class="selectpicker table_dropdown" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
                 <option value="AIN">AIN</option>
                 <option value="AIN_EF">AIN_EF</option>
                 <option value="ASYNCH">ASYNCH</option>
