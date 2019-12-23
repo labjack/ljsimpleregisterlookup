@@ -134,29 +134,7 @@
             </th>
             <th scope="col" style="width: 70px;">
               <select id="Tags" class="selectpicker table_dropdown drop_left" multiple title="Tags" data-width="40%"  data-live-search="true" multiple data-selected-text-format="static" data-size="5">
-                <option value="AIN">AIN</option>
-                <option value="AIN_EF">AIN_EF</option>
-                <option value="ASYNCH">ASYNCH</option>
-                <option value="CONFIG">CONFIG</option>
-                <option value="CORE">CORE</option>
-                <option value="DAC">DAC</option>
-                <option value="DIO">DIO</option>
-                <option value="DIO_EF">DIO_EF</option>
-                <option value="ETHERNET">ETHERNET</option>
-                <option value="FILE_IO">FILE_IO</option>
-                <option value="I2C">I2C</option>
-                <option value="INTFLASH">INTFLASH</option>
-                <option value="LUA">LUA</option>
-                <option value="ONEWIRE">ONEWIRE</option>
-                <option value="RTC">RTC</option>
-                <option value="SBUS">SBUS</option>
-                <option value="SPI">SPI</option>
-                <option value="STREAM">STREAM</option>
-                <option value="TDAC">TDAC</option>
-                <option value="UART">UART</option>
-                <option value="USER_RAM">USER_RAM</option>
-                <option value="WATCHDOG">WATCHDOG</option>
-                <option value="WIFI">WIFI</option>
+              {{tag_out |safe}}
               </select>
             </th>
             <th scope="col" >Devices</th>
@@ -194,7 +172,7 @@
           "dom": '<f><t><pil>',
           "dom": '<"toolbar">frtip',
           fnInitComplete: function(){
-            $('div.toolbar').html('<select id="devices-select" class="selectpicker"><option value="">All Devices</option><option value="DIGIT">DIGIT</option><option value="T7">T7</option><option value="T4">T4</option></select>');
+            $('div.toolbar').html('{{devices|safe}}');
           },
           "order": [], //Initial no order.
           "aaSorting": [],

@@ -36,6 +36,7 @@ ALLOWED_REDISPLAY_DOMAIN = "https://labjack.com"
 
 @app.route("/")
 def show_ui():
+
     return render_modbus_map()
     """Display the JavaScript client for viewing MODBUS map information.
 
@@ -45,7 +46,26 @@ def show_ui():
 def render_modbus_map():
     data = json.dumps(lj_modbus.rendered_modbus_data())
     data = json.loads(data)
-    return flask.render_template("modbus.html", registers = data)
+
+    device_options = modbus_maps.keys()
+    devices = '<select id="devices-select" class="selectpicker"><option value="">All Devices</option>'
+    for x in device_options:
+        devices += '<option value="'+x+'">'+x+'</option>'
+    devices += '</select>'
+
+    tag_options = set()
+    for x in modbus_maps:
+        for reg in modbus_maps[x]:
+            for tag in reg["tags"]:
+                tag_options.add(tag)
+    tag_options = sorted(list(filter(None, tag_options)))
+
+    tag_out=""
+    for x in tag_options:
+        tag_out += ' <option value="'+x+'">'+x+'</option>'
+
+
+    return flask.render_template("modbus.html", registers = data, devices = devices, tag_out = tag_out)
     
 
 def prepareFilterArg(argument):
