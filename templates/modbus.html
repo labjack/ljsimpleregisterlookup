@@ -20,7 +20,7 @@
       @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.css');
       @import url('//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css');
       td.details-control{
-        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_35.png')center center;
+        background: url('https://ljsimpleregisterlookup.herokuapp.com/static/images/closed_35.png')center center;
         background-repeat: no-repeat;
         background-size: 15px 15px;
         cursor: pointer;
@@ -29,7 +29,7 @@
         background-color: #96c8ff;
       }
       tr.shown td.details-control{
-        background: url('https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png')center center;
+        background: url('https://ljsimpleregisterlookup.herokuapp.com/static/images/open_35.png')center center;
         background-repeat: no-repeat;
         background-size: 15px 15px;
       }
@@ -261,17 +261,17 @@
       }
 
       function showHidden(id) {
-        if (document.getElementById("show" + id + "img").src == "https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png")
+        if (document.getElementById("show" + id + "img").src == "https://ljsimpleregisterlookup.herokuapp.com/static/images/closed_gray.png")
         {
           $('#' + id).css('display', 'inline');
           $('#' + id + '1').css('display', 'inline');
-          document.getElementById("show" + id + "img").src = "https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png";
-          document.getElementById("show" + id + "img1").src = "https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/open_35.png";
+          document.getElementById("show" + id + "img").src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/open_35.png";
+          document.getElementById("show" + id + "img1").src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/open_35.png";
         }else{
           $('#' + id).css('display', 'none');
           $('#' + id + '1').css('display', 'none');
-          document.getElementById("show" + id + "img").src = "https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png";
-          document.getElementById("show" + id + "img1").src = "https://ljsimpleregisterlookup-staging.herokuapp.com/static/images/closed_gray.png";
+          document.getElementById("show" + id + "img").src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/closed_gray.png";
+          document.getElementById("show" + id + "img1").src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/closed_gray.png";
         }
        
         //document.getElementById("show" + id).style.display = "none";
