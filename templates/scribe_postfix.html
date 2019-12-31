@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
         
-        jQuery( document ).ready(function() {
+        jQuery( document ).ready(function($) {
             $('.collapsed-content-expander').closest('.content').find('.sometimes-shown').hide();
             
             $('.collapsed-content-expander').click(function(e) {
@@ -15,7 +15,7 @@
         });
 </script>
 <script>
-   jQuery(document).ready(function(){
+   jQuery(document).ready(function($){
        $('.register-details').hide();
        $('#expand-all').on({'click': function(){
         if ( $('.register-details').css('display') === 'none' ){
@@ -33,7 +33,7 @@
         }
     }
     });
-  jQuery('table').find('tr').click( function(){
+ $('table').find('tr').click( function(){
   var row = $(this).find('td:first').attr('id');
   if ( $('#'+row+'details').css('display') === 'none' ){
            $('#'+row+'details').show();
