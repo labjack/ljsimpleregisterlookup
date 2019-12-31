@@ -1,4 +1,4 @@
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 
@@ -31,7 +31,6 @@
             $('.sometimes-shown').hide();
             $('.collapsed-content-expander').show();
         }
-        sleep(1000);
     }
     });
   $('table').find('tr').click( function(){
@@ -45,7 +44,6 @@
             $('#'+row+'SPN').show();
             $('#'+row+'IMG').attr("src","https://ljsimpleregisterlookup.herokuapp.com/static/images/closed_35.png");
         }
-        sleep(1000);
         });   
    });
    window.onbeforeprint = function() {
