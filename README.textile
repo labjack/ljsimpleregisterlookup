@@ -110,6 +110,21 @@ Alternatively, Flask:
 * $ python simple_register_lookup.py
 * Navigate to 127.0.0.1:5000 or localhost
 
+h3. Starting the server
+
+Change the main function of simple_register_lookup.py from:
+
+bc. if __name__ == "__main__":
+   app.debug = True  
+   app.run(host=os.environ["IP"], port=int(os.environ["PORT"]))
+
+to 
+
+bc. if __name__ == "__main__":
+    app.debug = True
+    app.run()#host=os.environ["IP"], port=int(os.environ["PORT"]))
+
+in order to run local dev without adding local variable dependencies.
 
 h2. Deployment
 

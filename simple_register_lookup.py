@@ -265,6 +265,9 @@ def inject_data():
 
 @app.route("/scribe_component", methods=["GET"])
 def inject_data_service():
+    """
+    This relies on the labjack.com or or the hosting page to include jquery.
+    """
     target_code = flask.request.args.get("input", "")
     return render_scribe(target_code)
 
