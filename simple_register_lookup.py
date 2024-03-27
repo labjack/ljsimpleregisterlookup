@@ -306,6 +306,83 @@ def render_scribe(target_code, expand=False):
     postfix = flask.render_template("scribe_postfix.html")
     return prefix + target_code + postfix
 
+@app.route("/regstoJSON", methods=["GET", "POST"])
+def regstoJSON():
+    resolvedDict = {}
+    target_code = flask.request.args.get("input", "")
+
+    target_code = json.loads(target_code)
+    if(target_code['TYPE'].lower() == 'auto'):
+        device = ""
+        if('Device' in target_code):
+            device ="[" + target_code['Device'] + "]"
+        base = '@registers(' + target_code['TITLE'] + ')'+ device + ':' + target_code['REGISTER']
+        if('Expanded' in target_code):
+            resolvedDict = regstoDict(base, expand=target_code['Expanded'])
+        else:
+            resolvedDict = regstoDict(base, expand=False)
+
+    # if(target_code['TYPE'].lower() == 'error'):
+    #     return render_error_scribe(target_code['ERRORS'])
+    # if(target_code['TYPE'].lower() == 'device'):
+    #     if('TAGS' in target_code):
+    #         if('Expanded' in target_code):
+    #             return render_device_scribe(target_code['Device'], tags=target_code['TAGS'], expand=target_code['Expanded'])
+    #     if('Expanded' in target_code):
+    #             return render_device_scribe(target_code['Device'], expand=target_code['Expanded'])
+    #     return render_device_scribe(target_code['device'])
+    # return "Error invalid JSON"
+    response = flask.make_response(json.dumps(resolvedDict))
+    response.headers["X-XSS-Protection"] = "0"
+    response.headers["Access-Control-Allow-Origin"] = ALLOWED_REDISPLAY_DOMAIN
+    return response
+
+def regstoDict(target_code, expand=False):
+    names = parse_ljsl.find_names(target_code)
+
+    not_found_reg_names = []
+    tag_class_tuples = lj_scribe.find_classes_from_map(
+        names,
+        reg_maps,
+        not_found_reg_names
+    )
+
+    tag_subtags_by_class = lj_scribe.fia_organize_tag_by_class(tag_class_tuples)
+    # print(tag_subtags_by_class)
+    resolvedRegInfo = {}
+    # The object structures are a mess. The following loop cleans it up so we
+    # just a get a good 'ol dictionary of registers whose values are register
+    # properties. Example:
+    # 'AIN0_RESOLUTION_INDEX':{
+    #   'address': 41500,
+    #   'type': 'UINT16',
+    #   'description': 'The resolution index for command-response and AIN-EF readings. A larger resolution index generally results in lower noise and longer sample times.',
+    #   'streamable': False,
+    #   'isBuffer': False,
+    #   'readWrite': 'RW',
+    #   'devices': [{
+    #     'device': 'T8',
+    #     'description': 'Valid values:  0-16. A value of 0 will instruct the T8 to use the best resolution for the rate specified.'
+    #   }, {
+    #     'device': 'T7',
+    #     'description': 'Valid values:  0-8 for T7, 0-12 for T7-Pro.  Default value of 0 corresponds to an index of 8 (T7) or 9 (T7-Pro).'
+    #   }, {
+    #     'device': 'T4',
+    #     'description': 'Valid values:  0-5.  Default value of 0 corresponds to an index of 5.'
+    #   }],
+    #   'default': 0
+    # }
+
+    for register, reginfo in tag_subtags_by_class[0].items():
+        readWrite = ""
+        if reginfo.resolved[0]['read']:
+            readWrite += "R"
+        if reginfo.resolved[0]['write']:
+            readWrite += "W"
+        resolvedRegInfo[register] = reginfo.unresolved
+    return resolvedRegInfo
+
+
 
 def uniques(seq, id_fun=None):
     """Remove duplicates from a collection.
