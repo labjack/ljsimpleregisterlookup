@@ -9,6 +9,10 @@ from ljm_constants import ljmmm
 
 
 def format_errors(high, low):
+    output_dict = format_errors_to_dict(high,low)
+    return flask.render_template("tag_summary_template_error.html", tag =  output_dict)
+
+def format_errors_to_dict(high, low):
     raw_error = list(zip(ljmmm.get_errors()))
     #sort errors based on high and low values
     output_dict = find_error_range_from_errors(low, high, raw_error)
@@ -18,7 +22,7 @@ def format_errors(high, low):
         if "description" in data:
             data["description"] = ljmmm.apply_anchors(data["description"])
         output_dict[x] = data
-    return flask.render_template("tag_summary_template_error.html", tag =  output_dict)
+    return output_dict
 
 
 def find_error_range_from_errors(low, high, raw_error):

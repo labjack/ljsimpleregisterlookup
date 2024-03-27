@@ -306,8 +306,8 @@ def render_scribe(target_code, expand=False):
     postfix = flask.render_template("scribe_postfix.html")
     return prefix + target_code + postfix
 
-@app.route("/regstoJSON", methods=["GET", "POST"])
-def regstoJSON():
+@app.route("/decodetoJSON", methods=["GET", "POST"])
+def decodetoJSON():
     resolvedDict = {}
     target_code = flask.request.args.get("input", "")
 
@@ -322,8 +322,8 @@ def regstoJSON():
         else:
             resolvedDict = regstoDict(base, expand=False)
 
-    # if(target_code['TYPE'].lower() == 'error'):
-    #     return render_error_scribe(target_code['ERRORS'])
+    elif(target_code['TYPE'].lower() == 'error'):
+        resolvedDict = errorstoDict(target_code['ERRORS'])
     # if(target_code['TYPE'].lower() == 'device'):
     #     if('TAGS' in target_code):
     #         if('Expanded' in target_code):
@@ -331,7 +331,8 @@ def regstoJSON():
     #     if('Expanded' in target_code):
     #             return render_device_scribe(target_code['Device'], expand=target_code['Expanded'])
     #     return render_device_scribe(target_code['device'])
-    # return "Error invalid JSON"
+    else:
+        return flask.make_response("Error: invalid JSON")
     response = flask.make_response(json.dumps(resolvedDict))
     response.headers["X-XSS-Protection"] = "0"
     response.headers["Access-Control-Allow-Origin"] = ALLOWED_REDISPLAY_DOMAIN
@@ -382,7 +383,20 @@ def regstoDict(target_code, expand=False):
         resolvedRegInfo[register] = reginfo.unresolved
     return resolvedRegInfo
 
-
+def errorstoDict(target_code):
+    target_code = target_code.lower()
+    if(target_code != ""):
+        if(target_code == "all"):
+            high = float("inf")
+            low = high*-1
+        else:
+            error_range = target_code.split(',')
+            low = int(error_range[0])
+            high = int(error_range[1])
+    else:
+        high = float("inf")
+        low = high*-1
+    return lj_error_scribe.format_errors_to_dict(high,low)
 
 def uniques(seq, id_fun=None):
     """Remove duplicates from a collection.
