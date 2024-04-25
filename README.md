@@ -6,18 +6,42 @@ LJSimpleRegisterLookup is released under the GNU GPL v2 license.
 
 ## Deploying
 
-To deploy new
-[ljm_constants.json](https://github.com/labjack/ljm_constants/blob/master/LabJack/LJM/ljm_constants.json)
-changes:
+To deploy new [ljm_constants.json](https://github.com/labjack/ljm_constants/blob/master/LabJack/LJM/ljm_constants.json) changes:
 
-- [Install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-    and sign into the heroku CLI
+To deploy changes to _ljm_constants_ using GitHub CI Actions
+```sh
+git clone ---recursive git@github.com:labjack/ljsimpleregisterlookup.git
+cd ljsimpleregisterlookup
+git checkout development
+python3 -m venv venv                          # Create virtualenv venv
+source venv/bin/activate                      # Activate venv
+python3 -m pip install -r requirements.txt    # Install dependencies
+cd ljm_constants
+git checkout master                            # Sets the submodule ref to head of master
+cd ../                                         # Go back to ljsimpleregisterlookup root
+git status                                     # Make sure that the submodule was updated
+python3 runtests.py                            # Make sure that all tests still pass
+git add ljm_constants                          # Add the submodule to commit
+git commit -m "Update ljm_constants submodule" # Reference the PR here if necessary
+git push
+```
+After pushing, the GitHub Actions will run tests and then deploy to <http://ljsimpleregisterlookup-staging.herokuapp.com/>
+you can view the status on the _Actions_ tab of the repo at <https://github.com/labjack/ljsimpleregisterlookup/actions>.
+Once you verify that it has deployed correctly you can deploy it to production through either the Heroku dashboard 
+or using the Action which deploys to production (by merging development into the main branch).
+
+For more info on deploying _ljsimpleregisterlookup_ see the **Deployment** section below.
+
+
+
+##### Old Way using Heroku CLI ()
+- [Install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and sign into the Heroku CLI
 - Pull the new changes into ljsimpleregisterlookup
     (ljsimpleregisterlookup/ljm_constants is a git submodule)
 - If the ljm_constants.json's `tag_mappings` have changed, update
     `TAG_MAPPINGS` in `static/js/simple_register_lookup_core.js`.
 - Commit the change to ljsimpleregisterlookup
-- Follow Deployment Instructions below, deployment is done through CI/CD actions
+
 
 ## Overview for the project (tl;dr)
 
@@ -66,7 +90,7 @@ enumeration as the four following examples demonstrate:
 
 **Addresses**\
 LJMMM specifies the available list of value data types that may extend
-beyond a 2 byte MODBUS register and, thus, provides automatic
+beyond a 2-byte MODBUS register and, thus, provides automatic
 enumeration for addresses. Those valid datatypes include:
 
 - FLOAT32
@@ -111,6 +135,8 @@ runs on Heroku (<http://www.heroku.com/>). The front-end uses jQuery
 (<http://jquery.com/>), jQuery UI (<http://jqueryui.com/>), and DataTables
 (<http://www.datatables.net/>). The current deployment uses Gunicorn
 (<http://gunicorn.org/>) for its web server.
+
+CI deployments are done using GitHub Actions.
 
 ## Development Standards
 
@@ -177,7 +203,7 @@ See the results in the actions tab on GitHub.
 ## Local Development Server
 
 A local web server can be run either through Flask or Gunicorn.
-Gunicorn:
+Gunicorn: (does not work on Windows)
 
 - \$ gunicorn simple_register_lookup:app
 - Navigate to 127.0.0.1:8000 or localhost:8000
