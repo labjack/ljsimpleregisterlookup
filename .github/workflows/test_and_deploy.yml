@@ -49,8 +49,8 @@ jobs:
     environment: ${{ needs.environment.outputs.ENV }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: git submodule update --init --recursive
+      # - uses: actions/checkout@v3
+      # - run: git submodule update --init --recursive
       - uses: akhileshns/heroku-deploy@v3.12.13
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
