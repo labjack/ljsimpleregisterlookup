@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository and submodules
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: git submodule update --init --recursive
       - name: Setup Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10' 
       - name: Create and start virtual environment
@@ -49,14 +49,15 @@ jobs:
     environment: ${{ needs.environment.outputs.ENV }}
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v3
-      # - run: git submodule update --init --recursive
-      - uses: akhileshns/heroku-deploy@v3.12.13
+      - uses: actions/checkout@v4
+     #- run: git submodule update --init --recursive
+      - uses: AkhileshNS/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ vars.APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           healthcheck: ${{ vars.APP_HEALTHCHECK_LINK }}
           delay: 3
-          dontuseforce: true
+          usedocker: false
+          #dontuseforce: true
           # rollbackonhealthcheckfailed: true  # Do we need to rollback?
