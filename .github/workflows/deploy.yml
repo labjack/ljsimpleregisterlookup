@@ -17,6 +17,7 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ vars.APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          # healthcheck: ${{ vars.APP_HEALTHCHECK_LINK }}
-          # delay: 3
+          healthcheck: ${{ vars.APP_HEALTHCHECK_LINK }}
+          delay: 3
           dontuseforce: true
+          # rollbackonhealthcheckfailed: true  # Do we need to rollback
