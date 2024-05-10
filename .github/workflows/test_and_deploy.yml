@@ -58,6 +58,5 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           healthcheck: ${{ vars.APP_HEALTHCHECK_LINK }}
           delay: 3
-          usedocker: false
-          #dontuseforce: true
+          dontuseforce: true
           # rollbackonhealthcheckfailed: true  # Do we need to rollback?
