@@ -1,8 +1,9 @@
 name: Run Python Tests and Deploy to Heroku Environment
 
 on:
-  push:
-    branches: [ main, development, ci ]
+  workflow_dispatch:
+  # push:
+  #   branches: [ main, development, ci ]
 
 jobs:
   test:

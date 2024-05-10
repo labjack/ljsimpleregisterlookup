@@ -1,14 +1,21 @@
 name: Deploy to Heroku Testing Environment
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+  push: 
+    branches: [ci]
+
 
 jobs:
   deploy:
     environment: ljsimpleregisterlookup-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: akhileshns/heroku-deploy@v3.12.13
+      - uses: actions/checkout@v4
+      - run: |
+              git status
+              git submodule status
+      - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ vars.APP_NAME }}
