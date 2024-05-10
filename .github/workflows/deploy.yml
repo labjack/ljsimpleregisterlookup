@@ -21,6 +21,8 @@ jobs:
               git submodule update
               git submodule status
               git status --porcelain
+              git submodule sync
+              git submodule status
               git rev-parse --is-shallow-repository
               git fetch --unshallow
               git rev-parse --is-shallow-repository
