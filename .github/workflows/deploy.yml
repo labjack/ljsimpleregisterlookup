@@ -18,14 +18,9 @@ jobs:
       - run: |
               git status
               git submodule status
-              git submodule init
-              git submodule update
-              git submodule status
-              git status --porcelain
-              git submodule sync
-              git submodule status
               git rev-parse --is-shallow-repository
-              git fetch
+              git fetch --no-recurse-submodules
+              git fetch --recurse-submodules
               git rev-parse --is-shallow-repository
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
