@@ -87,6 +87,15 @@ def prepareFilterArg(argument):
 
     return argument.split(",")
 
+# Displays the version of LJM Constants being used.
+@app.route("/version")
+def show_version():
+    with open('ljm_constants/LabJack/LJM/ljm_constants.json') as constants:
+        d = json.load(constants)
+        version = d['header']['version']
+        del d # delete the big JSON ref
+        constants.close() # close the file
+        return flask.render_template_string('LJM Constants Version - ' + version)
 
 @app.route("/lookup.html")
 def embed_lookup():
