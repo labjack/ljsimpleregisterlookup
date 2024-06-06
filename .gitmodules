@@ -1,4 +1,4 @@
 [submodule "ljm_constants"]
 	path = ljm_constants
 	url = https://github.com/labjack/ljm_constants.git
-	branch = master
+	# branch = master
