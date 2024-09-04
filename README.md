@@ -197,7 +197,7 @@ Then, to deploy to production, log into the Heroku Dashboard, verify that stagin
 Check the deployment succeeded on:
 
 - The production deployed website
-  - <http://ljsimpleregisterlookup-staging.herokuapp.com/>
+  - <http://ljsimpleregisterlookup.herokuapp.com/>
 - The embedded Modbus Map on our webite which pulls from prod (link may have changed)
   - <https://labjack.com/pages/support?doc=%2Fdatasheets%2Ft-series-datasheet%2F31-modbus-map-t-series-datasheet%2F>
 
