@@ -41,10 +41,10 @@
                <li>This register may be streamed</li>
                {% endif %}
                {% if subtag.unresolved.isBuffer %}
-               <li>This register is a <a href="https://labjack.com/support/datasheets/t7/communication/modbus-map/buffer-registers">Buffer Register</a></li>
+               <li>This register is a <a href="https://support.labjack.com/docs/3-1-modbus-map-t-series-datasheet#id-3.1ModbusMap%5BT-SeriesDatasheet%5D-BufferRegisters">Buffer Register</a></li>
                {% endif %}
                {% if subtag.unresolved.usesRAM %}
-               <li>This register uses system RAM. The maximum RAM is 64KB. For more information, see <a href="/support/datasheets/t-series/hardware-overview/ram">4.4 RAM</a></li>
+               <li>This register uses system RAM. The maximum RAM is 64KB. For more information, see <a href="https://support.labjack.com/docs/4-0-hardware-overview-t-series-datasheet#id-4.0HardwareOverview%5BT-SeriesDatasheet%5D-RAM">4.4 RAM</a></li>
                {% endif %}
                {% for unres_device in subtag.unresolved.devices %}
                {% if unres_device.description or unres_device.default or unres_device.fwmin %}

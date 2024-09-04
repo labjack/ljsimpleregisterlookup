@@ -275,10 +275,10 @@ function fnFormatDetails( oTable, nTr, detailIndices)
     <li>This register may be streamed</li>
   {{/streamable}}
   {{#usesRAM}}
-    <li>This register uses system RAM. The maximum RAM is 64KB. For more information, see <a href="https://labjack.com/support/datasheets/t-series/hardware-overview/ram" target="_top">4.4 RAM</a></li>
+    <li>This register uses system RAM. The maximum RAM is 64KB. For more information, see <a href="https://support.labjack.com/docs/4-0-hardware-overview-t-series-datasheet#id-4.0HardwareOverview%5BT-SeriesDatasheet%5D-RAM" target="_top">4.4 RAM</a></li>
   {{/usesRAM}}
   {{#isBuffer}}
-    <li>This register is a <em><a href="https://labjack.com/support/datasheets/t7/communication/modbus-map/buffer-registers" target="_top">buffer register</a></em></li>
+    <li>This register is a <em><a href="https://support.labjack.com/docs/3-1-modbus-map-t-series-datasheet#id-3.1ModbusMap%5BT-SeriesDatasheet%5D-BufferRegisters" target="_top">buffer register</a></em></li>
   {{/isBuffer}}
   {{#devices}}
     <li>{{device}}-specific:
