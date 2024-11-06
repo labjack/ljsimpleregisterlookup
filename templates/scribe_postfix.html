@@ -1,26 +1,24 @@
-<script type="text/javascript">
-try {
-    var jQueryObj;
-    if(typeof($) === 'undefined') {
-        jQueryObj = jQuery;
-    } else {
-        jQueryObj = $;
-    }
-    (function($) {
-        
-        $( document ).ready(function() {
-            $('.collapsed-content-expander').closest('.content').find('.sometimes-shown').hide();
-            
-            $('.collapsed-content-expander').click(function(e) {
-                $(e.target).closest('.content').find('.collapsed-content-expander').fadeOut(function () {
-                    $(e.target).closest('.content').find('.sometimes-shown').fadeIn();
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LJScribe postfix</title>
+        <script src="/static/js/jquery.js"></script>
+    </head>
+    <body>
+        <script>
+            $( document ).ready(function() {
+                $('.collapsed-content-expander').closest('.content').find('.sometimes-shown').hide();
+                
+                $('.collapsed-content-expander').click(function(e) {
+                    $(e.target).closest('.content').find('.collapsed-content-expander').fadeOut(function () {
+                        $(e.target).closest('.content').find('.sometimes-shown').fadeIn();
+                    });
+                    return false;
                 });
-                return false;
             });
-        });
-    })(jQueryObj);  // Execute.
-} catch(err) {
-    
-}
+        </script>
+    </body>
+</html>
 
-</script>
