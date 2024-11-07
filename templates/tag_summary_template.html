@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+</head>
+<body>
+
 {% macro get_full_name(orig_subtag) -%}
     {% if orig_subtag.includes_ljmmm %}
     {% set full_name = '%s#(%d:%d)%s' % (
@@ -233,3 +241,6 @@
    }
 </script>
 {% endif %}
+</body>
+</html>
+

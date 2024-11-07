@@ -1,38 +1,45 @@
-<style>
-
-table {
-    font-family: arial, sans-serif !important;
-    border-collapse: collapse !important;
-    width: 100% !important;
-}
-
-td, th {
-    border: 1px solid #dddddd !important;
-    text-align: left !important;
-    padding: 8px !important;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd !important;
-}
-
-</style>
-
-
-<table>
-<tr><th>Error Code</th>  <th>Error Name</th>  <th>Description</th></tr>
-{% for error in tag %}
-<tr>
-    <td>
-   {{error['error']}}
-    </td>
-     <td>
-   {{error['string']}}
-    </td>
-     <td>
-   {{error['description']|safe}}
-    </td>
-</tr>
-{% endfor %}
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+   <style>
+    table {
+        font-family: arial, sans-serif !important;
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+    
+    td, th {
+        border: 1px solid #dddddd !important;
+        text-align: left !important;
+        padding: 8px !important;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd !important;
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Error Code</th>
+                <th>Error Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for error in tag %}
+            <tr>
+                <td> {{error['error']}} </td>
+                <td> {{error['string']}} </td>
+                <td> {{error['description']|safe}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
 

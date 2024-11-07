@@ -1,15 +1,25 @@
-<div id="test-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>LJSL Example</title>
+</head>
+<body>
+    <div id="test-section">
 
-<p>An analog input converts a voltage level into a digital value that can be stored and processed in a computer. Why would you want to measure voltages? There are a multitude of sensors available which convert things like temperature, pressure, etc. into voltages.  The voltages can then be easily measured by various kinds of hardware, such as a LabJack T7, and then read into a computer.  The computer can then convert the voltage value into it's original type (temperature, pressure, etc) and the value can then be stored in a file, emailed to someone, or used to control something else outside of the computer. The T7 exposes analog inputs through MODBUS registers as demonstrated below.</p>
+        <p>An analog input converts a voltage level into a digital value that can be stored and processed in a computer. Why would you want to measure voltages? There are a multitude of sensors available which convert things like temperature, pressure, etc. into voltages.  The voltages can then be easily measured by various kinds of hardware, such as a LabJack T7, and then read into a computer.  The computer can then convert the voltage value into it's original type (temperature, pressure, etc) and the value can then be stored in a file, emailed to someone, or used to control something else outside of the computer. The T7 exposes analog inputs through MODBUS registers as demonstrated below.</p>
 
-<p>
-First, information about configuration: 
-@registers:AIN#(0:10)_RANGE,AIN#(0:10)_NEGATIVE_CH,AIN#(0:10)_RESOLUTION_INDEX
-</p>
+        <p>
+        First, information about configuration: 
+        @registers:AIN#(0:10)_RANGE,AIN#(0:10)_NEGATIVE_CH,AIN#(0:10)_RESOLUTION_INDEX
+        </p>
 
-<p>
-Now, information about reading voltage levels:
-@registers:AIN#(0:10)
-</p>
+        <p>
+        Now, information about reading voltage levels:
+        @registers:AIN#(0:10)
+        </p>
 
-</div>
+    </div>
+</body>
+</html>
