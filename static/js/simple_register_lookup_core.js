@@ -23,6 +23,7 @@ var TAG_MAPPINGS = {
     "AIN":            "/support/datasheets/t-series/ain",
     "AIN_EF":         "/support/datasheets/t-series/ain/extended-features",
     "ASYNCH":         "/support/datasheets/t-series/digital-io/asynchronous-serial",
+    "CONFIG":         "/support/datasheets/t-series/config",
     "DAC":            "/support/datasheets/t-series/dac",
     "DIO":            "/support/datasheets/t-series/digital-io/extended-features",
     "DIO_EF":         "/support/datasheets/t-series/digital-io/extended-features",
