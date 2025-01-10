@@ -23,7 +23,7 @@
 
  {% macro registerBody(orig_subtag, subtag) %}
 <div class="sub-tag">
-   <h6>{{ get_full_name(orig_subtag) }}</h6>
+   <h6>{{ get_full_name(orig_subtag) }}</h6> 
    - {% if subtag.resolved|length == 1 %}Address:{% else %}Starting Address:{% endif %} {{subtag.resolved[0].address}}
    <div class="main-content">
       <div class="description">
@@ -126,10 +126,9 @@
                </td>
                <td>
                   <span>
-                  address = {{ subtag.resolved[0].address }} + ({{ subtag.resolved[1].address - subtag.resolved[0].address }} * <i>index</i>)
+                  address = {{ subtag.resolved[0].address }} + ({{ subtag.resolved[1].address - subtag.resolved[0].address }} * <i>#</i>)
                   </span>
                    <!-- Can we determine address size based on the register type, yes we can. Data type determines address? -->
-               
                </td>
             </tr>
          </tbody>
