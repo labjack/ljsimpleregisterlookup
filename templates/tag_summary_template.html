@@ -194,11 +194,11 @@
       </thead>
       <tbody>
          {% for (orig_subtag, subtag) in tags %}
-         <tr class="class-summary expand" onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+         <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td >
                <p class="shortdes" >
-                  <a onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails('{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
+                  <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
                   {{ get_full_name(orig_subtag) }} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
                   <span id="{{subtag.resolved[0].address}}SPN"> {{ subtag.resolved[0].description  }}</span>
                </p>
@@ -230,7 +230,8 @@
    </table>
 </div>
 <script>
-   function hideDetails(id, imgid) {
+   function hideDetails(event, id, imgid) {
+   event.stopPropagation(); // Prevents the event from bubbling up
    var x = document.getElementById(id);
    var buttonimg = document.getElementById(imgid);
    var span = id + "SPN";
@@ -245,7 +246,16 @@
        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
    
    }
+
+   const width = document.body.scrollWidth;
+   const height = document.body.scrollHeight;
+   window.parent.postMessage(
+      { type: 'toggle-expand', width, height },
+         '*'
+      );
+      console.warn("onClick expand size changed", width, height);
    }
+   //'https://labjack.atlassian.net'
 </script>
 {% endif %}
 </body>
