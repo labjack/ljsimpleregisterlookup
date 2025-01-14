@@ -246,7 +246,7 @@
        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
    
    }
-
+   // Notify parent that table has been expanded for resizing.
    const width = document.body.scrollWidth;
    const height = document.body.scrollHeight;
    window.parent.postMessage(
@@ -255,7 +255,7 @@
       );
       console.warn("onClick expand size changed", width, height);
    }
-   //'https://labjack.atlassian.net'
+   //'https://labjack.atlassian.net' // Link for postMessage endpoint domain
 </script>
 {% endif %}
 </body>
