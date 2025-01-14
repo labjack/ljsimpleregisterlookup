@@ -17,6 +17,23 @@
                     });
                     return false;
                 });
+
+                // notifies parent element of calculated size of SRL element.
+                // Only the height is important, do we bother with the width?
+                function notifyParentOfSize() {
+                    const width = document.body.scrollWidth;
+                    const height = document.body.scrollHeight;
+        
+                    window.parent.postMessage(
+                        { type: 'resize', width, height },
+                        '*'
+                    );
+                    console.warn("notifyParentOfSize", width, height);
+                }
+        
+                // Notify parent of the size initially and on window resize
+                notifyParentOfSize();
+                window.addEventListener('resize', notifyParentOfSize);
             });
         </script>
     </body>
