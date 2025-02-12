@@ -231,31 +231,30 @@
 </div>
 <script>
    function hideDetails(event, id, imgid) {
-   event.stopPropagation(); // Prevents the event from bubbling up
-   var x = document.getElementById(id);
-   var buttonimg = document.getElementById(imgid);
-   var span = id + "SPN";
-   span = document.getElementById(span);
-   if (x.style.display === "none") {
-       x.style.display = "block";
-       span.style.display = "none";
-       buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"
-   } else {
-       x.style.display = "none";
-       span.style.display = "inline";
-       buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
-   
+      event.stopPropagation(); // Prevents the event from bubbling up
+      var x = document.getElementById(id);
+      var buttonimg = document.getElementById(imgid);
+      var span = id + "SPN";
+      span = document.getElementById(span);
+      if (x.style.display === "none") {
+         x.style.display = "block";
+         span.style.display = "none";
+         buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"
+      } else {
+         x.style.display = "none";
+         span.style.display = "inline";
+         buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
+      
+      }
+      // Notify parent that table has been expanded for resizing.
+      const width = document.body.scrollWidth;
+      const height = document.body.scrollHeight;
+      window.parent.postMessage(
+         { type: 'toggle-expand', width, height },
+            '*'
+         );
+         // console.log("onClick expand size changed", width, height);
    }
-   // Notify parent that table has been expanded for resizing.
-   const width = document.body.scrollWidth;
-   const height = document.body.scrollHeight;
-   window.parent.postMessage(
-      { type: 'toggle-expand', width, height },
-         '*'
-      );
-      console.warn("onClick expand size changed", width, height);
-   }
-   //'https://labjack.atlassian.net' // Link for postMessage endpoint domain
 </script>
 {% endif %}
 </body>
