@@ -196,12 +196,20 @@
          {% for (orig_subtag, subtag) in tags %}
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td >
-               <p class="shortdes" >
+               <!-- <p class="shortdes" >
                   <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
                   <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
                   {{ get_full_name(orig_subtag) }} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
                   <span id="{{subtag.resolved[0].address}}SPN"> {{ subtag.resolved[0].description  }}</span>
-               </p>
+               </p> -->
+               <div class="regDesc">
+                  <div class="regNameWrapper">
+                     <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+                        <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
+                        <span class="regName">{{ get_full_name(orig_subtag) }}</span>
+                  </div>
+                  <div id="{{subtag.resolved[0].address}}SPN" class="shortdes"> {{ subtag.resolved[0].description }}</div>
+               </div>
             </td>
             <td>{{subtag.resolved[0].address}}</td>
             <td>{{subtag.unresolved.type}}</td>
@@ -230,6 +238,25 @@
    </table>
 </div>
 <script>
+   document.addEventListener('DOMContentLoaded', function() {
+      const descriptions = document.querySelectorAll('.shortdes');
+      
+      descriptions.forEach((desc) => {
+        // Get the full description text
+        let fullDescription = desc.textContent.trim();
+    
+        // Extract the first sentence (everything before the first period)
+        let firstSentence = fullDescription.split('.')[0] + '.';
+    
+        // If there is any text after the first sentence, append ellipsis
+        if (fullDescription.length > firstSentence.length) {
+          firstSentence += '..'; // Add only 2 periods
+        }
+    
+        // Update the text content with the first sentence and ellipsis
+        desc.textContent = firstSentence;
+      });
+    });
    function hideDetails(event, id, imgid) {
       event.stopPropagation(); // Prevents the event from bubbling up
       var x = document.getElementById(id);

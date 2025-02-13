@@ -30,7 +30,7 @@
                 width: 100%;
                 border-spacing: 0px;
                 -webkit-border-horizontal-spacing: 0px;
-                -webkit-border-vertical-spacing: 0px;
+                -webkit-border-vertical-spacing: 0px; 
             }
 
             .tag-summary td {
@@ -140,9 +140,9 @@
             }
             
             .shortdes { 
-            width: 75%; 
-            overflow: hidden;
-            text-overflow: ellipsis; 
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 /*
                 use for fade effect insted of elipse on tag preview.
                 background: -webkit-linear-gradient(left, #000000 , #777676);
@@ -152,6 +152,26 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 */
+            }
+
+            .regDesc { /* outer div for the img, regName, and regDesc*/
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                align-items: center;
+                min-width: 0;
+            }
+
+            /* div which holds the img and span of regName */
+            .regNameWrapper {
+                /*flex: 1 0 auto;*/
+                margin-right: 4ch;
+                /*white-space: nowrap;*/
+            }
+
+            /* span for the regName only*/
+            .regName {
+
             }
             
         </style>
