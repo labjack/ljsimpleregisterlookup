@@ -196,19 +196,13 @@
          {% for (orig_subtag, subtag) in tags %}
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td >
-               <!-- <p class="shortdes" >
-                  <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
-                  {{ get_full_name(orig_subtag) }} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
-                  <span id="{{subtag.resolved[0].address}}SPN"> {{ subtag.resolved[0].description  }}</span>
-               </p> -->
                <div class="regDesc">
                   <div class="regNameWrapper">
                      <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
                         <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
                         <span class="regName">{{ get_full_name(orig_subtag) }}</span>
                   </div>
-                  <div id="{{subtag.resolved[0].address}}SPN" class="shortdes"> {{ subtag.resolved[0].description }}</div>
+                  <span id="{{subtag.resolved[0].address}}SPN" class="shortdes">{{ subtag.resolved[0].description }}</span>
                </div>
             </td>
             <td>{{subtag.resolved[0].address}}</td>
@@ -226,7 +220,7 @@
             </td>
          </tr>
          <tr class="expandbody">
-            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand">
+            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="4">
                <div>
                   {{ registerBody(orig_subtag, subtag) }}
                   </br>
@@ -238,7 +232,10 @@
    </table>
 </div>
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
+   /* The below code automatically trims the register description to the first sentence and adds ellipsis 
+      if the description is longer than the first sentence */
+   /*
+      document.addEventListener('DOMContentLoaded', function() {
       const descriptions = document.querySelectorAll('.shortdes');
       
       descriptions.forEach((desc) => {
@@ -256,22 +253,23 @@
         // Update the text content with the first sentence and ellipsis
         desc.textContent = firstSentence;
       });
-    });
+    }); */
    function hideDetails(event, id, imgid) {
       event.stopPropagation(); // Prevents the event from bubbling up
       var x = document.getElementById(id);
       var buttonimg = document.getElementById(imgid);
-      var span = id + "SPN";
-      span = document.getElementById(span);
+      var span = document.getElementById(id + "SPN");
       if (x.style.display === "none") {
-         x.style.display = "block";
-         span.style.display = "none";
-         buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"
+        x.style.display = "table-cell"; // Make the expanded row visible
+        span.style.display = "none"; // Hide short description
+        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png";
+        x.closest("tr").classList.add("expanded-row"); // Optional styling
+    
       } else {
-         x.style.display = "none";
-         span.style.display = "inline";
-         buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
-      
+        x.style.display = "none"; // Hide expanded row
+        span.style.display = "inline"; // Show short description again
+        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png";
+        x.closest("tr").classList.remove("expanded-row");
       }
       // Notify parent that table has been expanded for resizing.
       const width = document.body.scrollWidth;

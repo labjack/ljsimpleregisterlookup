@@ -31,6 +31,7 @@
                 border-spacing: 0px;
                 -webkit-border-horizontal-spacing: 0px;
                 -webkit-border-vertical-spacing: 0px; 
+                table-layout: fixed;
             }
 
             .tag-summary td {
@@ -40,6 +41,10 @@
                 padding-right: 5px !important;
                 margin: 0 30px;
                 border: none;
+            }
+
+            .tag-summary td:first-child {
+                width: 60%;
             }
 
             @media print {
@@ -140,9 +145,11 @@
             }
             
             .shortdes { 
-                flex: 1;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                flex-grow: 1; /* Forces it to take up remaining space */
+                min-width: 0; /* Critical for text truncation in flexbox */
                 /*
                 use for fade effect insted of elipse on tag preview.
                 background: -webkit-linear-gradient(left, #000000 , #777676);
@@ -156,17 +163,24 @@
 
             .regDesc { /* outer div for the img, regName, and regDesc*/
                 display: flex;
-                justify-content: flex-start;
-                flex-wrap: nowrap;
                 align-items: center;
-                min-width: 0;
+                gap: 4px;
+                width: 100%;
+                /* justify-content: flex-start; */
+                /* flex-wrap: nowrap; 
+                align-items: center;
+                min-width: 0; */
             }
 
             /* div which holds the img and span of regName */
             .regNameWrapper {
                 /*flex: 1 0 auto;*/
-                margin-right: 4ch;
-                /*white-space: nowrap;*/
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                white-space: nowrap;
+                flex-shrink: 0; /* Prevents name & img from shrinking */
+                /*margin-right: 4ch; */ /* I use this to push the shortdes to the right 4 chars. */
             }
 
             /* span for the regName only*/
