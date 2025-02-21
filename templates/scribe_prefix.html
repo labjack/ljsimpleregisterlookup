@@ -31,7 +31,7 @@
                 border-spacing: 0px;
                 -webkit-border-horizontal-spacing: 0px;
                 -webkit-border-vertical-spacing: 0px; 
-                table-layout: fixed;
+                table-layout: auto;
             }
 
             .tag-summary td {
@@ -41,21 +41,6 @@
                 padding-right: 5px !important;
                 margin: 0 30px;
                 border: none;
-            }
-
-            /* First column: 60% width */
-            .tag-summary td:first-child {
-                width: 65%;
-            }
-  
-            /* Last three columns: Minimum space based on content */
-            /* This also messes up the sub-details table column sizing */
-            .tag-summary td:nth-child(2),
-            .tag-summary td:nth-child(3),
-            .tag-summary td:nth-child(4) {
-                width: 1px; /* Auto-shrinks to fit content */
-                min-width: max-content; /* Ensures enough space for content */
-                text-align: center;
             }
 
             @media print {
@@ -155,14 +140,52 @@
                 background-color: #9DDAFB;
             }
             
-            .shortdes { 
+            /* First column (content dictates its width) */
+            /*.tag-summary > tbody > tr.class-summary.expand > td:nth-child(1),
+            .tag-summary > thead > tr > td:nth-child(1) {
+                width: auto;
+                white-space: nowrap; 
+            }
+
+            .tag-summary > tbody > tr.class-summary.expand td:nth-child(2),
+            .tag-summary > thead > tr > td:nth-child(2) {
+                max-width: 50%; 
+              }
+            */
+            .tag-summary > tbody > tr.class-summary.expand td:nth-last-child(-n+3),
+            .tag-summary > thead > tr td:nth-last-child(-n+3) {
+                /*width: 9%;*/
+                text-align: center;
                 white-space: nowrap;
+            } 
+            .second {
+                width: 55%;
+            }
+            .ellipsis { 
+                position: relative; 
+            } 
+            .ellipsis:before { 
+                content: ' '; 
+                visibility: hidden; 
+            } 
+            .ellipsis span { 
+                position: absolute; 
+                left: 0; 
+                right: 0; 
+                top: 25%;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                padding-left: 5px;
+            }
+            .shortdes { /* Span for the register description */
+                /*white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-size: 12px; /* smaller font for register description */ 
-                flex-grow: 1; /* Forces it to take up remaining space */
-                min-width: 0; /* Critical for text truncation in flexbox */
-                /*
+                font-size: 12px; */
+                /*min-width: 0; /* Critical for text truncation in flexbox */
+                
+                /* 
                 use for fade effect insted of elipse on tag preview.
                 background: -webkit-linear-gradient(left, #000000 , #777676);
                 background: -o-linear-gradient(right, #000000, #777676);
@@ -173,31 +196,27 @@
                 */
             }
 
-            .regDesc { /* outer div for the img, regName, and regDesc*/
-                display: flex;
+            .regDesc { /* div for register description */
+                /*display: flex;
                 align-items: center;
+                flex-shrink: 0;
                 gap: 4px;
-                width: 100%;
+                white-space: nowrap;*/
                 /* justify-content: flex-start; */
-                /* flex-wrap: nowrap; 
-                align-items: center;
-                min-width: 0; */
+                /*overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;*/
             }
 
             /* div which holds the img and span of regName */
             .regNameWrapper {
-                /*flex: 1 0 auto;*/
                 display: flex;
                 align-items: center;
-                gap: 5px;
+                gap: 4px;
                 white-space: nowrap;
-                flex-shrink: 0; /* Prevents name & img from shrinking */
+                /*flex-shrink: 0; /* Prevents name & img from shrinking */
                 /*margin-right: 4ch; */ /* I use this to push the shortdes to the right 4 chars. */
-            }
-
-            /* span for the regName only*/
-            .regName {
-
             }
             
         </style>

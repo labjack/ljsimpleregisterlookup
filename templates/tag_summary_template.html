@@ -186,7 +186,8 @@
    <table class="tag-summary">
       <thead>
          <tr class="emphasis-row">
-            <td width="80%">Name</td>
+            <td>Name</td>
+            <td>Description</td>
             <td>Start Address</td>
             <td>Type</td>
             <td>Access</td>
@@ -196,12 +197,14 @@
          {% for (orig_subtag, subtag) in tags %}
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td >
+               <div class="regNameWrapper">
+                  <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
+                  <span class="regName">{{ get_full_name(orig_subtag) }}</span>
+               </div>
+            </td>
+            <td class="ellipsis second">
                <div class="regDesc">
-                  <div class="regNameWrapper">
-                     <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                        <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
-                        <span class="regName">{{ get_full_name(orig_subtag) }}</span>
-                  </div>
                   <span id="{{subtag.resolved[0].address}}SPN" class="shortdes">{{ subtag.resolved[0].description }}</span>
                </div>
             </td>
@@ -220,7 +223,7 @@
             </td>
          </tr>
          <tr class="expandbody">
-            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="4">
+            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="5">
                <div>
                   {{ registerBody(orig_subtag, subtag) }}
                   </br>
