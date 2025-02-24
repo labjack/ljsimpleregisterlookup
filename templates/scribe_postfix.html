@@ -9,13 +9,17 @@
     <body>
         <script>
             $( document ).ready(function() {
+                /* To reimplement "Show ALl buttons, change this prop to true, and remove "sometimes-shown" class from the .collapsed-content-expander <a> tags*/
+                DISPLAY_EXPANDED_NAME_ADD = false;
                 $('.collapsed-content-expander').closest('.content').find('.sometimes-shown').hide();
                 
                 $('.collapsed-content-expander').click(function(e) {
-                    $(e.target).closest('.content').find('.collapsed-content-expander').fadeOut(function () {
-                        $(e.target).closest('.content').find('.sometimes-shown').fadeIn();
-                        notifyParentOfSize(); // Trigger resize of parent element when registers expand.
-                    });
+                    if(DISPLAY_EXPANDED_NAME_ADD) {
+                        $(e.target).closest('.content').find('.collapsed-content-expander').fadeOut(function () {
+                            $(e.target).closest('.content').find('.sometimes-shown').fadeIn();
+                            notifyParentOfSize(); // Trigger resize of parent element when registers expand.
+                        });
+                    }
                     return false;
                 });
 
