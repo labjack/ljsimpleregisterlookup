@@ -15,7 +15,7 @@
                 padding-top: 1px;
                 padding-bottom: 10px;
                 padding-left: 10px;
-                padding-right: 0px;
+                padding-right: 10px;
                 font-size: 13px;
             }
 
@@ -30,7 +30,8 @@
                 width: 100%;
                 border-spacing: 0px;
                 -webkit-border-horizontal-spacing: 0px;
-                -webkit-border-vertical-spacing: 0px;
+                -webkit-border-vertical-spacing: 0px; 
+                table-layout: auto;
             }
 
             .tag-summary td {
@@ -81,7 +82,7 @@
             .sub-details {
                 margin-top: 2px;
                 font-size: 13px;
-                width: initial;
+                width: auto;
             }
 
             .sub-details thead tr td {
@@ -139,11 +140,52 @@
                 background-color: #9DDAFB;
             }
             
-            .shortdes { 
-            width: 75%; 
-            overflow: hidden;
-            text-overflow: ellipsis; 
-                /*
+            /* First column (content dictates its width) */
+            /*.tag-summary > tbody > tr.class-summary.expand > td:nth-child(1),
+            .tag-summary > thead > tr > td:nth-child(1) {
+                width: auto;
+                white-space: nowrap; 
+            }
+
+            .tag-summary > tbody > tr.class-summary.expand td:nth-child(2),
+            .tag-summary > thead > tr > td:nth-child(2) {
+                max-width: 50%; 
+              }
+            */
+            .tag-summary > tbody > tr.class-summary.expand td:nth-last-child(-n+3),
+            .tag-summary > thead > tr td:nth-last-child(-n+3) {
+                /*width: 9%;*/
+                /* text-align: center; */
+                white-space: nowrap;
+            } 
+            .second {
+                width: 55%;
+            }
+            .ellipsis { 
+                position: relative; 
+            } 
+            .ellipsis:before { 
+                content: ' '; 
+                visibility: hidden; 
+            } 
+            .ellipsis span { 
+                position: absolute; 
+                left: 0; 
+                right: 0; 
+                top: 25%;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                padding-left: 5px;
+            }
+            .shortdes { /* Span for the register description */
+                /*white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12px; */
+                /*min-width: 0; /* Critical for text truncation in flexbox */
+                
+                /* 
                 use for fade effect insted of elipse on tag preview.
                 background: -webkit-linear-gradient(left, #000000 , #777676);
                 background: -o-linear-gradient(right, #000000, #777676);
@@ -152,6 +194,29 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 */
+            }
+
+            .regDesc { /* div for register description */
+                /*display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                gap: 4px;
+                white-space: nowrap;*/
+                /* justify-content: flex-start; */
+                /*overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;*/
+            }
+
+            /* div which holds the img and span of regName */
+            .regNameWrapper {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
+                /*flex-shrink: 0; /* Prevents name & img from shrinking */
+                /*margin-right: 4ch; */ /* I use this to push the shortdes to the right 4 chars. */
             }
             
         </style>

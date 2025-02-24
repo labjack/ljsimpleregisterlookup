@@ -111,7 +111,8 @@
                   </span>
                   {% endfor %}
                   {% if subtag.resolved|length > 3 %}
-                  <a href="#" class="collapsed-content-expander">Show All</a>
+                  ...
+                  <a href="#" class="collapsed-content-expander sometimes-shown">Show All</a>
                   {% endif %}
                </td>
                <td>
@@ -121,7 +122,8 @@
                   </span>
                   {% endfor %}
                   {% if subtag.resolved|length > 3 %}
-                  <a href="#" class="collapsed-content-expander">Show All</a>
+                  ...
+                  <a href="#" class="collapsed-content-expander sometimes-shown">Show All</a>
                   {% endif %}
                </td>
                <td>
@@ -186,7 +188,8 @@
    <table class="tag-summary">
       <thead>
          <tr class="emphasis-row">
-            <td width="80%">Name</td>
+            <td>Name</td>
+            <td>Description</td>
             <td>Start Address</td>
             <td>Type</td>
             <td>Access</td>
@@ -196,12 +199,16 @@
          {% for (orig_subtag, subtag) in tags %}
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td >
-               <p class="shortdes" >
+               <div class="regNameWrapper">
                   <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
                   <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
-                  {{ get_full_name(orig_subtag) }} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
-                  <span id="{{subtag.resolved[0].address}}SPN"> {{ subtag.resolved[0].description  }}</span>
-               </p>
+                  <span class="regName">{{ get_full_name(orig_subtag) }}</span>
+               </div>
+            </td>
+            <td class="ellipsis second">
+               <div class="regDesc">
+                  <span id="{{subtag.resolved[0].address}}SPN" class="shortdes">{{ subtag.resolved[0].description }}</span>
+               </div>
             </td>
             <td>{{subtag.resolved[0].address}}</td>
             <td>{{subtag.unresolved.type}}</td>
@@ -218,7 +225,7 @@
             </td>
          </tr>
          <tr class="expandbody">
-            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand">
+            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="5">
                <div>
                   {{ registerBody(orig_subtag, subtag) }}
                   </br>
@@ -230,32 +237,54 @@
    </table>
 </div>
 <script>
+   /* The below code automatically trims the register description to the first sentence and adds ellipsis 
+      if the description is longer than the first sentence */
+   /*
+      document.addEventListener('DOMContentLoaded', function() {
+      const descriptions = document.querySelectorAll('.shortdes');
+      
+      descriptions.forEach((desc) => {
+        // Get the full description text
+        let fullDescription = desc.textContent.trim();
+    
+        // Extract the first sentence (everything before the first period)
+        let firstSentence = fullDescription.split('.')[0] + '.';
+    
+        // If there is any text after the first sentence, append ellipsis
+        if (fullDescription.length > firstSentence.length) {
+          firstSentence += '..'; // Add only 2 periods
+        }
+    
+        // Update the text content with the first sentence and ellipsis
+        desc.textContent = firstSentence;
+      });
+    }); */
    function hideDetails(event, id, imgid) {
-   event.stopPropagation(); // Prevents the event from bubbling up
-   var x = document.getElementById(id);
-   var buttonimg = document.getElementById(imgid);
-   var span = id + "SPN";
-   span = document.getElementById(span);
-   if (x.style.display === "none") {
-       x.style.display = "block";
-       span.style.display = "none";
-       buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png"
-   } else {
-       x.style.display = "none";
-       span.style.display = "inline";
-       buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png"
-   
+      event.stopPropagation(); // Prevents the event from bubbling up
+      var x = document.getElementById(id);
+      var buttonimg = document.getElementById(imgid);
+      var span = document.getElementById(id + "SPN");
+      if (x.style.display === "none") {
+        x.style.display = "table-cell"; // Make the expanded row visible
+        span.style.display = "none"; // Hide short description
+        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png";
+        x.closest("tr").classList.add("expanded-row"); // Optional styling
+    
+      } else {
+        x.style.display = "none"; // Hide expanded row
+        span.style.display = "inline"; // Show short description again
+        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png";
+        x.closest("tr").classList.remove("expanded-row");
+      }
+      // Notify parent that table has been expanded for resizing.
+      const width = document.body.scrollWidth;
+      const height = document.body.scrollHeight;
+      window.parent.postMessage(
+         { type: 'toggle-expand', width, height },
+            '*'
+         );
+         // console.log("onClick expand size changed", width, height);
    }
-   // Notify parent that table has been expanded for resizing.
-   const width = document.body.scrollWidth;
-   const height = document.body.scrollHeight;
-   window.parent.postMessage(
-      { type: 'toggle-expand', width, height },
-         '*'
-      );
-      console.warn("onClick expand size changed", width, height);
-   }
-   //'https://labjack.atlassian.net' // Link for postMessage endpoint domain
 </script>
 {% endif %}
 </body>
