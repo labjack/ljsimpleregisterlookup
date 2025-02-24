@@ -50,6 +50,8 @@ jobs:
     environment: ${{ needs.environment.outputs.ENV }}
     runs-on: ubuntu-latest
     steps:
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
       - uses: actions/checkout@v4
      #- run: git submodule update --init --recursive
       - uses: AkhileshNS/heroku-deploy@v3.13.15

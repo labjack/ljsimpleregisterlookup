@@ -1,152 +1,224 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <style>
 
-    h4 {
-        margin-top: 1em;
-        margin-bottom: 0.2em;
-    }
+            h4 {
+                margin-top: 1em;
+                margin-bottom: 0.2em;
+            }
 
-    .lj-scribe-tag {
-        background-color: #C9ECFF;
-        padding-top: 1px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        padding-right: 0px;
-        font-size: 13px;
-    }
+            .lj-scribe-tag {
+                background-color: #C9ECFF;
+                padding-top: 1px;
+                padding-bottom: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                font-size: 13px;
+            }
 
-    .tag-title {
-        margin-bottom: 0px;
-        border-bottom: solid 1px black;
-    }
+            .tag-title {
+                margin-bottom: 0px;
+                border-bottom: solid 1px black;
+            }
 
-    .tag-summary {
-        background-color: #9DDAFB;
-        margin-bottom: 5px;
-        width: 100%;
-        border-spacing: 0px;
-        -webkit-border-horizontal-spacing: 0px;
-        -webkit-border-vertical-spacing: 0px;
-    }
+            .tag-summary {
+                background-color: #9DDAFB;
+                margin-bottom: 5px;
+                width: 100%;
+                border-spacing: 0px;
+                -webkit-border-horizontal-spacing: 0px;
+                -webkit-border-vertical-spacing: 0px; 
+                table-layout: auto;
+            }
 
-    .tag-summary td {
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        margin: 0 30px;
-        border: none;
-    }
+            .tag-summary td {
+                padding-top: 2px !important;
+                padding-bottom: 2px !important;
+                padding-left: 5px !important;
+                padding-right: 5px !important;
+                margin: 0 30px;
+                border: none;
+            }
 
-    @media print {
-    .lj-scribe-tag {
-        -webkit-print-color-adjust: exact;
-    }
-    .tag-summary {
-        -webkit-print-color-adjust: exact;
-    }
-    .printexpand{
-        display: block !important;
-    }
-    }
-    .emphasis-row td {
-        background-color: #9DDAFB;
-        border-bottom: 1px solid !important;
-        font-weight: bold;
-    }
+            @media print {
+            .lj-scribe-tag {
+                -webkit-print-color-adjust: exact;
+            }
+            .tag-summary {
+                -webkit-print-color-adjust: exact;
+            }
+            .printexpand{
+                display: block !important;
+            }
+            }
+            .emphasis-row td {
+                background-color: #9DDAFB;
+                border-bottom: 1px solid !important;
+                font-weight: bold;
+            }
 
-    .sub-tag {
-        margin-top: 15px;
-        margin-left: 30px;
-    }
+            .sub-tag {
+                margin-top: 15px;
+                margin-left: 30px;
+            }
 
-    .additional-details {
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
+            .additional-details {
+                margin-top: 4px;
+                margin-bottom: 4px;
+            }
 
-    .sub-tag h6 {
-        display: inline;
-    }
+            .sub-tag h6 {
+                display: inline;
+            }
 
-    .sub-tag .main-content {
-        margin-top: 5px;
-        margin-left: 30px;
-    }
+            .sub-tag .main-content {
+                margin-top: 5px;
+                margin-left: 30px;
+            }
 
-    .sub-details {
-        margin-top: 2px;
-        font-size: 13px;
-        width: initial;
-    }
+            .sub-details {
+                margin-top: 2px;
+                font-size: 13px;
+                width: auto;
+            }
 
-    .sub-details thead tr td {
-        border-bottom: 1px solid black !important;
-    }
+            .sub-details thead tr td {
+                border-bottom: 1px solid black !important;
+            }
 
-    .sub-details thead tr td {
-        font-weight: normal;
-        text-align: left;
-    }
+            .sub-details thead tr td {
+                font-weight: normal;
+                text-align: left;
+            }
 
-    .sub-details tbody {
-        font-family: monospace;
-    }
+            .sub-details tbody {
+                font-family: monospace;
+            }
 
-    .sub-details tr td:first-child {
-        padding-right: 10px !important;
-    }
+            .sub-details tr td:first-child {
+                padding-right: 10px !important;
+            }
 
-    .description .title {
-        /*font-size: 13px;*/
-        margin-bottom: 0;
-        border-bottom: 0;
-        color: black;
-        font-weight: bold;
-    }
+            .description .title {
+                /*font-size: 13px;*/
+                margin-bottom: 0;
+                border-bottom: 0;
+                color: black;
+                font-weight: bold;
+            }
 
-    .collapsed-content-expander {
-        color: #505050;
-    }
+            .collapsed-content-expander {
+                color: #505050;
+            }
 
-    .collapsed-content-expander:hover {
-        color: #808080;
-    }
+            .collapsed-content-expander:hover {
+                color: #808080;
+            }
 
-    .expand{
-        border-color: coral;
-    }
+            .expand{
+                border-color: coral;
+            }
 
-    .expand:hover{ 
-        background-color: #C9ECFF;
-        cursor: default;
-    }
+            .expand:hover{ 
+                background-color: #C9ECFF;
+                cursor: default;
+            }
 
-    .expandbody{ 
-        background-color: #C9ECFF;
-    }
+            .expandbody{ 
+                background-color: #C9ECFF;
+            }
 
-    .expandtd{ 
-        background-color: #C9ECFF;
-        
-    }
+            .expandtd{ 
+                background-color: #C9ECFF;
+                
+            }
 
-    .class-summary{
-        background-color: #9DDAFB;
-    }
-    
-    .shortdes { 
-    width: 75%; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-        /*
-        use for fade effect insted of elipse on tag preview.
-        background: -webkit-linear-gradient(left, #000000 , #777676);
-        background: -o-linear-gradient(right, #000000, #777676);
-        background: -moz-linear-gradient(right, #000000, #777676);
-        background: linear-gradient(to right, #000000 , #777676); 
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        */
-    }
-    
-</style>        
+            .class-summary{
+                background-color: #9DDAFB;
+            }
+            
+            /* First column (content dictates its width) */
+            /*.tag-summary > tbody > tr.class-summary.expand > td:nth-child(1),
+            .tag-summary > thead > tr > td:nth-child(1) {
+                width: auto;
+                white-space: nowrap; 
+            }
+
+            .tag-summary > tbody > tr.class-summary.expand td:nth-child(2),
+            .tag-summary > thead > tr > td:nth-child(2) {
+                max-width: 50%; 
+              }
+            */
+            .tag-summary > tbody > tr.class-summary.expand td:nth-last-child(-n+3),
+            .tag-summary > thead > tr td:nth-last-child(-n+3) {
+                /*width: 9%;*/
+                /* text-align: center; */
+                white-space: nowrap;
+            } 
+            .second {
+                width: 55%;
+            }
+            .ellipsis { 
+                position: relative; 
+            } 
+            .ellipsis:before { 
+                content: ' '; 
+                visibility: hidden; 
+            } 
+            .ellipsis span { 
+                position: absolute; 
+                left: 0; 
+                right: 0; 
+                top: 25%;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                padding-left: 5px;
+            }
+            .shortdes { /* Span for the register description */
+                /*white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12px; */
+                /*min-width: 0; /* Critical for text truncation in flexbox */
+                
+                /* 
+                use for fade effect insted of elipse on tag preview.
+                background: -webkit-linear-gradient(left, #000000 , #777676);
+                background: -o-linear-gradient(right, #000000, #777676);
+                background: -moz-linear-gradient(right, #000000, #777676);
+                background: linear-gradient(to right, #000000 , #777676); 
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                */
+            }
+
+            .regDesc { /* div for register description */
+                /*display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                gap: 4px;
+                white-space: nowrap;*/
+                /* justify-content: flex-start; */
+                /*overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;*/
+            }
+
+            /* div which holds the img and span of regName */
+            .regNameWrapper {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
+                /*flex-shrink: 0; /* Prevents name & img from shrinking */
+                /*margin-right: 4ch; */ /* I use this to push the shortdes to the right 4 chars. */
+            }
+            
+        </style>
+    </head>
+</html>        

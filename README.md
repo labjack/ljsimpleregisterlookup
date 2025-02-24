@@ -144,8 +144,8 @@ Requirements:
 
 Steps:
 
-- Clone this repo (\$ git clone ---recursive
-    git@github.com:labjack/ljsimpleregisterlookup.git)
+- Clone this repo `$ git clone ---recursive
+    git@github.com:labjack/ljsimpleregisterlookup.git`
 - cd into directory
 - setup virtualenv (venv) and install dependencies
 
@@ -160,11 +160,11 @@ Also, to accommodate cross-scripting security considerations, the
 client-side JavaScript has a hard-coded URL.
 
 To set up locally:
-
-- \$ python3 -m venv venv
-- \$ source venv/bin/activate
-- \$ pip install -r requirements.txt
-
+```
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
 You can leave the virtual environment with `$ deactivate`.
 
 ## Automated Testing
@@ -179,13 +179,14 @@ See the results in the actions tab on GitHub.
 A local web server can be run either through Flask or Gunicorn.
 Gunicorn:
 
-- \$ gunicorn simple_register_lookup:app
-- Navigate to 127.0.0.1:8000 or localhost:8000
+- ```$ gunicorn simple_register_lookup:app```
+- OR to active hot reloading ```$ gunicorn simple_register_lookup:app --reload```
+- Then, navigate to 127.0.0.1:8000 or localhost:8000
 
 Alternatively, Flask:
 
 - Export IP = "127.0.0.1" and PORT = 3000 as ENV variables in your terminal
-- \$ python simple_register_lookup.py
+- ```$ python simple_register_lookup.py```
 - Navigate to 127.0.0.1:3000 or localhost:3000
 
 ## Deployment
@@ -202,6 +203,19 @@ Check the deployment succeeded on:
   - <https://labjack.com/pages/support?doc=%2Fdatasheets%2Ft-series-datasheet%2F31-modbus-map-t-series-datasheet%2F>
 
 If either shows an error, you can rollback to the previous deployment the Heroku Dashboard production project activity feed. This will prevent the service from being down while debugging the failed deployment.
+
+### Deploy to Heroku using git
+You can also deploy to Heroku directly using git. This can be helpful when testing deployments without pushing commits to the repo.
+There is a heroku testing environment that can be used to test deployments. 
+You can see the testing environment at <https://ljsimpleregisterlookup-test.herokuapp.com>
+
+**To deploy to the Heroku testing environment using git:**
+
+- Log into to Heroku CLI 
+- Check if heroku remote is already in the repo `$ git remote -v`. Heroku upstream should be like https://git.heroku.com/ljsimpleregisterlookup-test.git
+- Otherwise, set up heroku remote `$ git remote add heroku https://git.heroku.com/ljsimpleregisterlookup-test.git`
+- Then you can deploy you branch to heroku testing environment like `$ git push heroku <your-branch-name>:main` which pushes your specified branch to the testing env's main branch.
+- Then you can view your deployed site at the url above, but you will need a browser extension to allow CORS in order for the modbus map table to load.
 
 ## Common Tasks
 
