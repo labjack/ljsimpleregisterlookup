@@ -2,7 +2,7 @@ name: Run Python Tests and Deploy to Heroku Environment
 
 on:
   push:
-    branches: [ main, development, ci ]
+    branches: [ development, ci ]
 
 jobs:
   test:
@@ -39,10 +39,10 @@ jobs:
       if: endsWith(github.ref, '/development')
       run: |
         echo "ENVIRONMENT=ljsimpleregisterlookup-staging" >> $GITHUB_ENV
-    - name: Set env to production
-      if: endsWith(github.ref, '/main')
-      run: |
-       echo "ENVIRONMENT=ljsimpleregisterlookup" >> $GITHUB_ENV
+    # - name: Set env to production
+    #   if: endsWith(github.ref, '/main')
+    #   run: |
+    #    echo "ENVIRONMENT=ljsimpleregisterlookup" >> $GITHUB_ENV
 
   deploy:
     needs: [test, environment] # Wait until test, environment jobs completes before deploying
