@@ -8,7 +8,8 @@ import json
 import os
 
 import flask
-from flask import Markup, request
+from flask import request
+from markupsafe import Markup
 
 from healthcheck import HealthCheck
 
