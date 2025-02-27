@@ -26,8 +26,8 @@
                 // notifies parent element of calculated size of SRL element.
                 // Only the height is important, do we bother with the width?
                 function notifyParentOfSize() {
-                    const width = document.body.scrollWidth;
-                    const height = document.body.scrollHeight;
+                    const width = document.body.clientWidth;
+                    const height = document.body.clientHeight;
         
                     window.parent.postMessage(
                         { type: 'resize', width, height },
@@ -36,8 +36,13 @@
                 }
         
                 // Notify parent of the size initially and on window resize
-                notifyParentOfSize();
+                //notifyParentOfSize();
                 window.addEventListener('resize', notifyParentOfSize);
+
+                $(window).on('load', function() {
+                    // Allow all elements on page to load before calculating size.
+                    notifyParentOfSize();
+                });
             });
         </script>
     </body>

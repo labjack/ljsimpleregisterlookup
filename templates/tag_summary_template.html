@@ -201,7 +201,7 @@
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
             <td class="expand-icon">
                <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-               <img src="https://ljsimpleregisterlookup-test.herokuapp.com/static/images/details_open_20x20.png" 
+               <img src="/static/images/details_open_20x20.png" 
                     id="{{subtag.resolved[0].address}}IMG" 
                     title="Expand Register Details"
                     onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
@@ -209,11 +209,6 @@
             </td>
             <td >
                <div class="regNameWrapper">
-                  <!-- <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                  <img src="http://127.0.0.1:8000/static/images/details_open_new.png" 
-                       id="{{subtag.resolved[0].address}}IMG" 
-                       title="Expand Register Details"
-                       onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a> -->
                   <span class="regName">{{ get_full_name(orig_subtag) }}</span>
                </div>
             </td>
@@ -279,21 +274,22 @@
       if (x.style.display === "none") {
         x.style.display = "table-cell"; // Make the expanded row visible
         span.style.display = "none"; // Hide short description
-        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png";
+        //buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png";
+        buttonimg.src = "/static/images/details_close.png";
         buttonimg.title = "Hide Register Details";
         x.closest("tr").classList.add("expanded-row"); // Optional styling
     
       } else {
         x.style.display = "none"; // Hide expanded row
         span.style.display = "inline"; // Show short description again
-        buttonimg.src = "https://ljsimpleregisterlookup-test.herokuapp.com/static/images/details_open_20x20.png";
+        buttonimg.src = "/static/images/details_open_20x20.png";
         //buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open_20x20.png";
         buttonimg.title = "Expand Register Details";
         x.closest("tr").classList.remove("expanded-row");
       }
       // Notify parent that table has been expanded for resizing.
-      const width = document.body.scrollWidth;
-      const height = document.body.scrollHeight;
+      const width = document.body.clientWidth;
+      const height = document.body.clientHeight;
       window.parent.postMessage(
          { type: 'toggle-expand', width, height },
             '*'
