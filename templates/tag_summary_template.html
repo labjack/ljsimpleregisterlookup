@@ -188,9 +188,10 @@
    <table class="tag-summary">
       <thead>
          <tr class="emphasis-row">
+            <td></td>
             <td>Name</td>
             <td>Description</td>
-            <td>Start Address</td>
+            <td>Address</td>
             <td>Type</td>
             <td>Access</td>
          </tr>
@@ -198,10 +199,21 @@
       <tbody>
          {% for (orig_subtag, subtag) in tags %}
          <tr class="class-summary expand" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+            <td class="expand-icon">
+               <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+               <img src="https://ljsimpleregisterlookup-test.herokuapp.com/static/images/details_open_20x20.png" 
+                    id="{{subtag.resolved[0].address}}IMG" 
+                    title="Expand Register Details"
+                    onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+                  </a>
+            </td>
             <td >
                <div class="regNameWrapper">
-                  <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
-                  <img src="https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png" id="{{subtag.resolved[0].address}}IMG" onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a>
+                  <!-- <a onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')">
+                  <img src="http://127.0.0.1:8000/static/images/details_open_new.png" 
+                       id="{{subtag.resolved[0].address}}IMG" 
+                       title="Expand Register Details"
+                       onclick="hideDetails(event,'{{subtag.resolved[0].address}}','{{subtag.resolved[0].address}}IMG')"></a> -->
                   <span class="regName">{{ get_full_name(orig_subtag) }}</span>
                </div>
             </td>
@@ -225,7 +237,7 @@
             </td>
          </tr>
          <tr class="expandbody">
-            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="5">
+            <td id="{{subtag.resolved[0].address}}" style="display:none;" class="printexpand" colspan="6">
                <div>
                   {{ registerBody(orig_subtag, subtag) }}
                   </br>
@@ -268,12 +280,15 @@
         x.style.display = "table-cell"; // Make the expanded row visible
         span.style.display = "none"; // Hide short description
         buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_close.png";
+        buttonimg.title = "Hide Register Details";
         x.closest("tr").classList.add("expanded-row"); // Optional styling
     
       } else {
         x.style.display = "none"; // Hide expanded row
         span.style.display = "inline"; // Show short description again
-        buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open.png";
+        buttonimg.src = "https://ljsimpleregisterlookup-test.herokuapp.com/static/images/details_open_20x20.png";
+        //buttonimg.src = "https://ljsimpleregisterlookup.herokuapp.com/static/images/details_open_20x20.png";
+        buttonimg.title = "Expand Register Details";
         x.closest("tr").classList.remove("expanded-row");
       }
       // Notify parent that table has been expanded for resizing.
