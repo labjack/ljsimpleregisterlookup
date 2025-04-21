@@ -62,6 +62,9 @@
                      {% if unres_device.description %}
                      <li>{{ unres_device.description }}</li>
                      {% endif %}
+                     {% if unres_device.exception %}
+                     <li>Exception: {{ unres_device.exception }}</li>
+                     {% endif %}
                      {% if unres_device.default %}
                      <li>Default value: {{ unres_device.default }}</li>
                      {% endif %}

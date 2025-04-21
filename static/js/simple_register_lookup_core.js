@@ -216,6 +216,12 @@ function fnFormatDetails( oTable, nTr, detailIndices)
         return this.description;
       return '';
     },
+    "device_exception": function() {
+      // Prevent it from looking up the scope and finding the non-device "exception"
+      if (this.exception)
+        return this.exception;
+      return '';
+    },
     "display_fwmin": function() {
         if (this.fwmin.toFixed) {
             return this.fwmin.toFixed(4);
@@ -287,6 +293,9 @@ function fnFormatDetails( oTable, nTr, detailIndices)
         {{#device_description}}
           <li>{{device_description}}</li>
         {{/device_description}}
+        {{#device_exception}}
+          <li>Exception: {{device_exception}}</li>
+        {{/device_exception}}
         {{#fwmin}}
           <li>Minimum <a href="https://labjack.com/support/firmware" target="_top">firmware</a> version: {{display_fwmin}}</li>
         {{/fwmin}}
