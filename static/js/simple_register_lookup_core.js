@@ -25,7 +25,7 @@ var TAG_MAPPINGS = {
     "ASYNCH":         "/support/datasheets/t-series/digital-io/asynchronous-serial",
     "CONFIG":         "/support/datasheets/t-series/config",
     "DAC":            "/support/datasheets/t-series/dac",
-    "DIO":            "/support/datasheets/t-series/digital-io/extended-features",
+    "DIO":            "/support/datasheets/t-series/digital-io",
     "DIO_EF":         "/support/datasheets/t-series/digital-io/extended-features",
     "ETHERNET":       "/support/datasheets/t-series/ethernet",
     "FILE_IO":        "/support/datasheets/t-series/sd-card",
